@@ -29,5 +29,5 @@ Icon?
 ehthumbs.db
 Thumbs.db
 
-app/Plugin/DebugKit
+app/Plugin/
 app/Vendor/
