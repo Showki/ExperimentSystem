@@ -103,4 +103,32 @@ class PastProblemsController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+
+		// $this->autoRender = false;
+	public function answerPastProblems() {
+		$problems = $this->PastProblem->find('all');
+
+		if(is_null($this->request->data('PastProblem.times'))){
+			$times = 0;
+		}else{
+			if(!empty($this->request->data['next'])){
+				$times = $this->request->data['PastProblem']['times'] + 1;
+			}else if(!empty($this->request->data['back'])){
+				$times = $this->request->data['PastProblem']['times'] - 1;
+			}
+		}
+
+
+		if($times < 0){
+			return $this->redirect(array('action' => ''));
+		}
+		if(!($times >= count($problems))){
+			$problem = $problems[$times];
+			$this->set(compact('times','problem'));
+		}else{
+			return $this->redirect(array('action' => 'index'));
+		}
+
+	}
 }
+
