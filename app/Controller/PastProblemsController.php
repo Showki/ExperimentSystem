@@ -108,6 +108,7 @@ class PastProblemsController extends AppController {
 	public function answerPastProblems() {
 		$problems = $this->PastProblem->find('all');
 
+		// viewからのpostがないときは初アクセスとみなし，0からスタート
 		if(is_null($this->request->data('PastProblem.times'))){
 			$times = 0;
 		}else{
@@ -122,8 +123,7 @@ class PastProblemsController extends AppController {
 			return $this->redirect(array('action' => ''));
 		}
 		if(!($times >= count($problems))){
-			$problem = $problems[$times];
-			// $problem_format = toProblemFormat($problem);
+			$problem = $this->PastProblem->toProblemFormat($problems[$times]);
 			$this->set(compact('times','problem'));
 		}else{
 			return $this->redirect(array('action' => 'index'));

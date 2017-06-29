@@ -92,10 +92,16 @@ class PastProblem extends AppModel {
 		),
 	);
 
-	// public function toProblemFormat($problem){
-	// 	$problem_format['sentence'] = $problem['PastProblem']['sentence'];
-	// 	$problem['PastProblem']['answer']
+	public function toProblemFormat($problem){
+		$convert['PastProblem']['id'] = $problem['PastProblem']['id'];
+		$convert['PastProblem']['problem_number'] = $problem['PastProblem']['problem_number'];
+		$convert['PastProblem']['sentence'] = $problem['PastProblem']['sentence'];
+		$convert['PastProblem']['option'][1] = $problem['PastProblem']['option_1'];
+		$convert['PastProblem']['option'][2] = $problem['PastProblem']['option_2'];
+		$convert['PastProblem']['option'][3] = $problem['PastProblem']['option_3'];
+		$convert['PastProblem']['option'][4] = $problem['PastProblem']['option_4'];
+		$convert['PastProblem']['correct_number'] = $problem['PastProblem']['correct_number'];
 
-	// }
-
+		return $convert;
+	}
 }
