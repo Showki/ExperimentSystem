@@ -16,24 +16,31 @@
 			<?php echo h($pastProblem['PastProblem']['sentence']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Answer'); ?></dt>
+		<dt><?php echo __('Option 1'); ?></dt>
 		<dd>
-			<?php echo h($pastProblem['PastProblem']['answer']); ?>
+			<?php echo h($pastProblem['PastProblem']['option_1']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Wrong Answer 1'); ?></dt>
+		<dt><?php echo __('Option 2'); ?></dt>
 		<dd>
-			<?php echo h($pastProblem['PastProblem']['wrong_answer_1']); ?>
+			<?php echo h($pastProblem['PastProblem']['option_2']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Wrong Answer 2'); ?></dt>
+		<dt><?php echo __('Option 3'); ?></dt>
 		<dd>
-			<?php echo h($pastProblem['PastProblem']['wrong_answer_2']); ?>
+			<?php echo h($pastProblem['PastProblem']['option_3']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Wrong Answer 3'); ?></dt>
+
+		<dt><?php echo __('Option 4'); ?></dt>
 		<dd>
-			<?php echo h($pastProblem['PastProblem']['wrong_answer_3']); ?>
+			<?php echo h($pastProblem['PastProblem']['option_4']); ?>
+			&nbsp;
+		</dd>
+
+		<dt><?php echo __('correct_number'); ?></dt>
+		<dd>
+			<?php echo h($pastProblem['PastProblem']['correct_number']); ?>
 			&nbsp;
 		</dd>
 	</dl>

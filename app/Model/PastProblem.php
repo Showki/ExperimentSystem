@@ -40,7 +40,7 @@ class PastProblem extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'answer' => array(
+		'option_1' => array(
 			'notBlank' => array(
 				'rule' => array('notBlank'),
 				//'message' => 'Your custom message here',
@@ -50,7 +50,7 @@ class PastProblem extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'wrong_answer_1' => array(
+		'option_2' => array(
 			'notBlank' => array(
 				'rule' => array('notBlank'),
 				//'message' => 'Your custom message here',
@@ -60,7 +60,7 @@ class PastProblem extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'wrong_answer_2' => array(
+		'option_3' => array(
 			'notBlank' => array(
 				'rule' => array('notBlank'),
 				//'message' => 'Your custom message here',
@@ -70,7 +70,17 @@ class PastProblem extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'wrong_answer_3' => array(
+		'option_4' => array(
+			'notBlank' => array(
+				'rule' => array('notBlank'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'correct_number' => array(
 			'notBlank' => array(
 				'rule' => array('notBlank'),
 				//'message' => 'Your custom message here',
@@ -81,4 +91,11 @@ class PastProblem extends AppModel {
 			),
 		),
 	);
+
+	// public function toProblemFormat($problem){
+	// 	$problem_format['sentence'] = $problem['PastProblem']['sentence'];
+	// 	$problem['PastProblem']['answer']
+
+	// }
+
 }

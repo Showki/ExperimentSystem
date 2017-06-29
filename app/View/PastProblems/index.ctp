@@ -6,10 +6,11 @@
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('problem_number'); ?></th>
 			<th><?php echo $this->Paginator->sort('sentence'); ?></th>
-			<th><?php echo $this->Paginator->sort('answer'); ?></th>
-			<th><?php echo $this->Paginator->sort('wrong_answer_1'); ?></th>
-			<th><?php echo $this->Paginator->sort('wrong_answer_2'); ?></th>
-			<th><?php echo $this->Paginator->sort('wrong_answer_3'); ?></th>
+			<th><?php echo $this->Paginator->sort('option_1'); ?></th>
+			<th><?php echo $this->Paginator->sort('option_2'); ?></th>
+			<th><?php echo $this->Paginator->sort('option_3'); ?></th>
+			<th><?php echo $this->Paginator->sort('option_4'); ?></th>
+			<th><?php echo $this->Paginator->sort('correct_number'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	</thead>
@@ -19,10 +20,11 @@
 		<td><?php echo h($pastProblem['PastProblem']['id']); ?>&nbsp;</td>
 		<td><?php echo h($pastProblem['PastProblem']['problem_number']); ?>&nbsp;</td>
 		<td><?php echo h($pastProblem['PastProblem']['sentence']); ?>&nbsp;</td>
-		<td><?php echo h($pastProblem['PastProblem']['answer']); ?>&nbsp;</td>
-		<td><?php echo h($pastProblem['PastProblem']['wrong_answer_1']); ?>&nbsp;</td>
-		<td><?php echo h($pastProblem['PastProblem']['wrong_answer_2']); ?>&nbsp;</td>
-		<td><?php echo h($pastProblem['PastProblem']['wrong_answer_3']); ?>&nbsp;</td>
+		<td><?php echo h($pastProblem['PastProblem']['option_1']); ?>&nbsp;</td>
+		<td><?php echo h($pastProblem['PastProblem']['option_2']); ?>&nbsp;</td>
+		<td><?php echo h($pastProblem['PastProblem']['option_3']); ?>&nbsp;</td>
+		<td><?php echo h($pastProblem['PastProblem']['option_4']); ?>&nbsp;</td>
+		<td><?php echo h($pastProblem['PastProblem']['correct_number']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $pastProblem['PastProblem']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $pastProblem['PastProblem']['id'])); ?>

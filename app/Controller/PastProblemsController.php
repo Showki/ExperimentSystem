@@ -112,18 +112,18 @@ class PastProblemsController extends AppController {
 			$times = 0;
 		}else{
 			if(!empty($this->request->data['next'])){
-				$times = $this->request->data['PastProblem']['times'] + 1;
+				$times = $this->request->data('PastProblem.times') + 1;
 			}else if(!empty($this->request->data['back'])){
-				$times = $this->request->data['PastProblem']['times'] - 1;
+				$times = $this->request->data('PastProblem.times') - 1;
 			}
 		}
-
-
+		// 最初の問題を解くときに，戻るを押した人は戻らない（元の画面が表示される）
 		if($times < 0){
 			return $this->redirect(array('action' => ''));
 		}
 		if(!($times >= count($problems))){
 			$problem = $problems[$times];
+			// $problem_format = toProblemFormat($problem);
 			$this->set(compact('times','problem'));
 		}else{
 			return $this->redirect(array('action' => 'index'));

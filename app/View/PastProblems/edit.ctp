@@ -6,10 +6,11 @@
 		echo $this->Form->input('id');
 		echo $this->Form->input('problem_number');
 		echo $this->Form->input('sentence');
-		echo $this->Form->input('answer');
-		echo $this->Form->input('wrong_answer_1');
-		echo $this->Form->input('wrong_answer_2');
-		echo $this->Form->input('wrong_answer_3');
+		echo $this->Form->input('option_1');
+		echo $this->Form->input('option_2');
+		echo $this->Form->input('option_3');
+		echo $this->Form->input('option_4');
+		echo $this->Form->input('correct_number');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
