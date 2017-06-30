@@ -1,4 +1,4 @@
-<fieldset>
+<!--<fieldset>-->
 	<?php $time_num = (string)$times + 1; ?>
 	<legend><?php echo __("第".$time_num."問"); ?></legend>
 	<legend><?php echo __($problem['PastProblem']['sentence']) ?></legend>
@@ -8,7 +8,7 @@
 			'type' => 'post','url' => 'answerPastProblems')
 		);
 
-		echo $this->Form->input('title', array(
+		echo $this->Form->input('select_option', array(
 			'legend' => false,
 			'type' => 'radio',
 			'options' => $problem['PastProblem']['option'],
@@ -35,5 +35,5 @@
 
 	debug($problem);
 ?>
-</fieldset>
+<!--</fieldset>-->
 

@@ -90,6 +90,12 @@ class PastProblem extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
+		'select_option' => array(
+			array(
+				'rule' => 'notEmpty',
+				'message' => '選択して下さい'
+			),
+		),
 	);
 
 	public function toProblemFormat($problem){
