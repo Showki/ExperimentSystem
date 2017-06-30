@@ -117,6 +117,13 @@ class PastProblemsController extends AppController {
 			}else if(!empty($this->request->data['back'])){
 				$times = $this->request->data('PastProblem.times') - 1;
 			}
+
+			// ここでtimesの結果がおかしいので、あとで調査
+			$answer_result = $this->request->data('PastProblem');
+			$answer_probelm = $this->PastProblem->findById($answer_result['id']);
+			debug(compact('answer_result','answer_probelm'));
+			$this->loadModel('AnswerResult');
+			$this->AnswerResult->storeAnswerResult($answer_result,$answer_probelm);
 		}
 		// 最初の問題を解くときに，戻るを押した人は戻らない（元の画面が表示される）
 		if($times < 0){

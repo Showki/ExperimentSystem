@@ -19,16 +19,17 @@
 		));
 
 	echo $this->Form->hidden('PastProblem.times',array('value' => $times));
+	echo $this->Form->hidden('PastProblem.id',array('value' => $problem['PastProblem']['id']));	
 
 	echo $this->Form->submit('戻る',array(
 		'div' => false,
-		// 'class' => false,
-		'name' => 'back'
+		'name' => 'back',
+		// 'class' => false
 	));
 	echo $this->Form->submit('進む',array(
 		'div' 	=> false,
-		// 'class' => false,
-		'name' 	=> 'next'
+		'name' 	=> 'next',
+		// 'class' => false
 	));
 
 	echo $this->Form->end();

@@ -24,4 +24,21 @@ class AnswerResult extends AppModel {
 			'order' => ''
 		)
 	);
+
+	public function storeAnswerResult($answer_result,$ansewr_problem){
+		$this->save($this->toStoreFormat($answer_result,$ansewr_problem));
+	}
+
+	public function toStoreFormat($answer_result,$ansewr_problem){
+		$result['past_problems_id'] = $answer_result['id'];
+		$result['select_number'] = $answer_result['select_option'];
+		$result['correct_number'] = $ansewr_problem['PastProblem']['correct_number'];
+		$result['type'] = 0;
+		if($result['select_number'] === $result['correct_number']){
+			$result['result'] = 1;
+		}else{
+			$result['result'] = 0;
+		}
+		return $result;
+	}
 }
