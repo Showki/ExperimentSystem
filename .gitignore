@@ -31,3 +31,4 @@ Thumbs.db
 
 app/Plugin/
 app/Vendor/
+app/Test/
