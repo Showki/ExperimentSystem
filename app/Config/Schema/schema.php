@@ -8,6 +8,20 @@ class AppSchema extends CakeSchema {
 	public function after($event = array()) {
 	}
 
+	public $answer_results = array(
+		'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false, 'key' => 'primary'),
+		'past_problems_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false),
+		'select_number' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false),
+		'result' => array('type' => 'boolean', 'null' => false, 'default' => null, 'comment' => '0:wrong 1:correct'),
+		'type' => array('type' => 'boolean', 'null' => false, 'default' => null, 'comment' => '0:過去問題，1:作成問題'),
+		'created' => array('type' => 'datetime', 'null' => true, 'default' => null),
+		'modified' => array('type' => 'datetime', 'null' => true, 'default' => null),
+		'indexes' => array(
+			'PRIMARY' => array('column' => 'id', 'unique' => 1)
+		),
+		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB', 'comment' => '過去問題と作成問題の結果を記録するテーブル')
+	);
+
 	public $past_problems = array(
 		'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false, 'key' => 'primary'),
 		'problem_number' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false),
