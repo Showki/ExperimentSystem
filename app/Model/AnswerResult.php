@@ -42,5 +42,19 @@ class AnswerResult extends AppModel {
 		return $result;
 	}
 
-	
+	public function getAnswerResult(){
+		$answer_results = $this->find('all');
+		foreach ($answer_results as $key => $result) {
+			$formated_result[$key] 	= $this->toShowFormat($result);
+		}
+		return $formated_result;
+	}
+
+	public function toShowFormat($result){
+		$selected_number = $result['AnswerResult']['select_number'];
+		$selected_option = $result['PastProblems']["option_".$selected_number];
+		$sentence = $result['PastProblems']['sentence'];		
+
+		return compact('sentence','selected_number','selected_option');
+	}
 }

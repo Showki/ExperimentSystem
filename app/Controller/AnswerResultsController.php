@@ -23,8 +23,9 @@ class AnswerResultsController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->AnswerResult->recursive = 0;
-		$this->set('answerResults', $this->Paginator->paginate());
+		$anser_results = $this->AnswerResult->getAnswerResult();
+		$answerResults = $this->Paginator->paginate();
+		$this->set(compact('anser_results','answerResults'));
 	}
 
 /**
