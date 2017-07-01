@@ -118,9 +118,9 @@ class PastProblemsController extends AppController {
 			// ここでtimesの結果がおかしいので、あとで調査
 			$answer_result = $this->request->data('PastProblem');
 			$answer_probelm = $this->PastProblem->findById($answer_result['id']);
-			$this->loadModel('AnswerResult');
 			// モデル名を消したネスト構造に
 			$answer_probelm = Set::extract('PastProblem',$answer_probelm);
+			$this->loadModel('AnswerResult');
 			$this->AnswerResult->storeAnswerResult($answer_result,$answer_probelm);
 		}
 
