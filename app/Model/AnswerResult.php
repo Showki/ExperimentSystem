@@ -32,7 +32,7 @@ class AnswerResult extends AppModel {
 	public function toStoreFormat($answer_result,$ansewr_problem){
 		$result['past_problems_id'] = $answer_result['id'];
 		$result['select_number'] = $answer_result['select_option'];
-		$result['correct_number'] = $ansewr_problem['PastProblem']['correct_number'];
+		$result['correct_number'] = $ansewr_problem['correct_number'];
 		$result['type'] = 0;
 		if($result['select_number'] === $result['correct_number']){
 			$result['result'] = 1;
@@ -41,4 +41,6 @@ class AnswerResult extends AppModel {
 		}
 		return $result;
 	}
+
+	
 }
