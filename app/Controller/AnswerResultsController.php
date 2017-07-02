@@ -70,23 +70,33 @@ class AnswerResultsController extends AppController {
  * @param string $id
  * @return void
  */
-	public function edit($id = null) {
-		if (!$this->AnswerResult->exists($id)) {
-			throw new NotFoundException(__('Invalid answer result'));
-		}
+	public function edit($times = null,$id = null) {
 		if ($this->request->is(array('post', 'put'))) {
+			debug($this->request->data);
 			if ($this->AnswerResult->save($this->request->data)) {
-				$this->Flash->success(__('The answer result has been saved.'));
+				$this->Flash->success(__('正常に保存されました．'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Flash->error(__('The answer result could not be saved. Please, try again.'));
+				$this->Flash->error(__('正常に保存されませんでした．'));
 			}
 		} else {
-			$options = array('conditions' => array('AnswerResult.' . $this->AnswerResult->primaryKey => $id));
-			$this->request->data = $this->AnswerResult->find('first', $options);
+			$answer_result_id = $this->request->query['id'];
+			$times = $this->request->query['times'];
+			$options = array('conditions' => array(
+				'AnswerResult.' . $this->AnswerResult->primaryKey => $answer_result_id));
+			$result = $this->AnswerResult->find('first', $options);
+
+			$this->loadModel('PastProblem');
+			$tmp['PastProblem'] = $result['PastProblems']; 
+			$problem = $this->PastProblem->toProblemFormat($tmp);
+
+			$answer['AnswerResult']['select_number'] = $result['AnswerResult']['select_number'];
+			$answer['AnswerResult']['id'] = $result['AnswerResult']['id'];
+
+
+			debug($result);
+			$this->set(compact('problem','times','answer'));
 		}
-		$answerResult = $this->AnswerResult->find('list');
-		$this->set(compact('answerResult'));
 	}
 
 /**
@@ -110,8 +120,4 @@ class AnswerResultsController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
-
-
-
-
 }
