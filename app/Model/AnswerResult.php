@@ -55,7 +55,7 @@ class AnswerResult extends AppModel {
 		$selected_option = $result['PastProblems']["option_".$selected_number];
 		$sentence = $result['PastProblems']['sentence'];	
 		$id = $result['AnswerResult']['id'];
-		
+
 		return compact('id','sentence','selected_number','selected_option');
 	}
 }

@@ -93,8 +93,6 @@ class AnswerResultsController extends AppController {
 			$answer['AnswerResult']['select_number'] = $result['AnswerResult']['select_number'];
 			$answer['AnswerResult']['id'] = $result['AnswerResult']['id'];
 
-
-			debug($result);
 			$this->set(compact('problem','times','answer'));
 		}
 	}
