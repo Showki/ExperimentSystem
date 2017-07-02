@@ -16,9 +16,13 @@
 			<td><?php echo h($answer_result['sentence']); ?></td>
 			<td><?php echo h("選択肢".$answer_result['selected_number']."：".$answer_result['selected_option']); ?></td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('編集'), array(
-					'action' => 'edit', $answer_result['id'])
-				); ?>
+			<?php echo $this->html->link('編集',array(
+				'action' => 'edit',
+				'?' => array(
+					'times' => $key+1,
+					'id' => $answer_result['id'])
+				));
+			?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
