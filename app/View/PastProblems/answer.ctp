@@ -4,7 +4,7 @@
 
 <?php
 echo $this->Form->create('PastProblem',array(
-	'type' => 'post','url' => 'answerPastProblems')
+	'type' => 'post','url' => 'answer')
 );
 echo $this->Form->input('select_option', array(
 	'legend' => false,
