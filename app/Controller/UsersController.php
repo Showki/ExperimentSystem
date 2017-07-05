@@ -118,5 +118,10 @@ public function beforeFilter() {
 	    }
 	}
 
+	public function logout(){
+		$logoutUrl = $this->Auth->logout();
+		$this->redirect($logoutUrl);
+	}
+
 
 }
