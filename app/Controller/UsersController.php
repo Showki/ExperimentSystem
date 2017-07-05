@@ -11,7 +11,7 @@ App::uses('AppController', 'Controller');
 class UsersController extends AppController {
 
 public function beforeFilter() {
-    $this->Auth->allow('add', 'index','addTestUsers');
+    $this->Auth->allow('add', 'index','addTestUsers','deleteTestUsers');
 }
 
 /**
