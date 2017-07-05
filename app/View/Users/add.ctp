@@ -5,7 +5,7 @@
 	<?php
 		echo $this->Form->input('student_number');
 		echo $this->Form->input('name');
-		echo $this->Form->input('ponts');
+		echo $this->Form->input('points');
 		echo $this->Form->input('team');
 		echo $this->Form->input('password');
 	?>

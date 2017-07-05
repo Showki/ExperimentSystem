@@ -16,9 +16,9 @@
 			<?php echo h($user['User']['name']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Ponts'); ?></dt>
+		<dt><?php echo __('Points'); ?></dt>
 		<dd>
-			<?php echo h($user['User']['ponts']); ?>
+			<?php echo h($user['User']['points']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Team'); ?></dt>

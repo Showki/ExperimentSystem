@@ -6,7 +6,7 @@
 		echo $this->Form->input('id');
 		echo $this->Form->input('student_number');
 		echo $this->Form->input('name');
-		echo $this->Form->input('ponts');
+		echo $this->Form->input('points');
 		echo $this->Form->input('team');
 	?>
 	</fieldset>
