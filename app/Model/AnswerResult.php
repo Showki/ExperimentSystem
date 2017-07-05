@@ -30,6 +30,7 @@ class AnswerResult extends AppModel {
 	}
 
 	public function toStoreFormat($answer_result,$ansewr_problem){
+		$result['users_id'] = $this->__getCurrentUserId();
 		$result['past_problems_id'] = $answer_result['id'];
 		$result['select_number'] = $answer_result['select_option'];
 		$result['correct_number'] = $ansewr_problem['correct_number'];
