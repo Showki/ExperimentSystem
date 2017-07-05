@@ -11,7 +11,7 @@ App::uses('AppController', 'Controller');
 class UsersController extends AppController {
 
 public function beforeFilter() {
-    $this->Auth->allow('add', 'index');
+    $this->Auth->allow('add', 'index','addTestUsers');
 }
 
 /**
@@ -123,5 +123,9 @@ public function beforeFilter() {
 		$this->redirect($logoutUrl);
 	}
 
+	public function addTestUsers() {
+		$this->autoRender = false;
+		$this->User->addTestUsers();
+	}
 
 }
