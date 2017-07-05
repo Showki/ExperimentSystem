@@ -7,6 +7,7 @@
 		echo $this->Form->input('name');
 		echo $this->Form->input('ponts');
 		echo $this->Form->input('team');
+		echo $this->Form->input('password');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

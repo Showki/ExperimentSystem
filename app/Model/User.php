@@ -1,5 +1,7 @@
 <?php
 App::uses('AppModel', 'Model');
+App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
+
 /**
  * User Model
  *
@@ -49,8 +51,14 @@ class User extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-
-
-
 	);
+	
+	public function beforeSave($options = Array()) {
+    	if (isset($this->data['User']['password'])) {
+        	$passwordHasher = new BlowfishPasswordHasher();
+        	$this->data['User']['password'] = $passwordHasher->hash($this->data['User']['password']);
+    	}
+    	return true;
+	}
+
 }

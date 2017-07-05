@@ -10,6 +10,10 @@ App::uses('AppController', 'Controller');
  */
 class UsersController extends AppController {
 
+public function beforeFilter() {
+    $this->Auth->allow('add', 'index');
+}
+
 /**
  * Components
  *
@@ -51,10 +55,10 @@ class UsersController extends AppController {
 		if ($this->request->is('post')) {
 			$this->User->create();
 			if ($this->User->save($this->request->data)) {
-				$this->Flash->success(__('The user has been saved.'));
+				$this->Flash->success(__('正常に登録されました．'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Flash->error(__('The user could not be saved. Please, try again.'));
+				$this->Flash->error(__('ユーザ登録ができませんでした．やり直してみてください．'));
 			}
 		}
 	}
@@ -103,4 +107,16 @@ class UsersController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+
+	public function login() {
+	    if($this->request->is('post')) {
+	        if($this->Auth->login()) {
+	            $this->redirect($this->Auth->redirect());
+	        }else{
+	            $this->Session->setFlash(__('IDまたはパスワードが違います'));
+	        }
+	    }
+	}
+
+
 }
