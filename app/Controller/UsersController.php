@@ -125,7 +125,20 @@ public function beforeFilter() {
 
 	public function addTestUsers() {
 		$this->autoRender = false;
-		$this->User->addTestUsers();
+		if($this->User->addTestUsers()){
+			$this->Session->setFlash(__('登録成功'));
+			return $this->redirect(array('action' => 'index'));
+		}
+	}
+
+	public function deleteTestUsers(){
+		$this->autoRender = false;
+		$conditions = array('User.name like' => '%テストユーザ%');
+		if($this->User->deleteAll($conditions,false)){
+			$this->Session->setFlash(__('削除成功'));
+			return $this->redirect(array('action' => 'index'));
+		}
+
 	}
 
 }
