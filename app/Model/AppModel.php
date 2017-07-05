@@ -30,10 +30,10 @@ App::uses('Model', 'Model');
  * @package       app.Model
  */
 class AppModel extends Model {
-    protected function __getCurrentUser() {
+    protected function __getCurrentUserId() {
         App::uses('CakeSession', 'Model/Datasource');
         $Session = new CakeSession();
-        $user_id = $Session->read('Auth.User');
+        $user_id = $Session->read('Auth.User.id');
         return $user_id;
     }
 }
