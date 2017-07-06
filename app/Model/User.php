@@ -82,4 +82,15 @@ class User extends AppModel {
 		$this->saveAll($test_users['User']);
 		return true;
 	}
+
+	public function assignTeam($users){
+		$team_num = 0;
+		foreach ($users as $key => $user) {
+			$team_num ^= 1;
+			$team = ($team_num == 1) ? "A" : "B";
+			$assigned_user['User'][$key]['id'] = $user['User']['id'];
+			$assigned_user['User'][$key]['team'] = $team;
+		}
+		return $this->saveAll($assigned_user['User']);
+	}
 }

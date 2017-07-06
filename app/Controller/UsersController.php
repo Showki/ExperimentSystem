@@ -11,7 +11,7 @@ App::uses('AppController', 'Controller');
 class UsersController extends AppController {
 
 public function beforeFilter() {
-    $this->Auth->allow('add', 'index','addTestUsers','deleteTestUsers');
+    $this->Auth->allow();
 }
 
 /**
@@ -141,4 +141,15 @@ public function beforeFilter() {
 
 	}
 
+	public function assignTeam(){
+		$this->autoRender = false;
+		$sort_users = $this->User->find('all',array(
+			'condifions' => array(),
+			'order' => array('User.points' => 'DESC'),
+		));
+		if($this->User->assignTeam($sort_users)){
+			$this->Session->setFlash(__('更新成功'));
+			return $this->redirect(array('action' => 'index'));
+		}
+	}
 }
