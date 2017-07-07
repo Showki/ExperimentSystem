@@ -144,12 +144,24 @@ public function beforeFilter() {
 	public function assignTeam(){
 		$this->autoRender = false;
 		$sort_users = $this->User->find('all',array(
-			'condifions' => array(),
 			'order' => array('User.points' => 'DESC'),
 		));
 		if($this->User->assignTeam($sort_users)){
 			$this->Session->setFlash(__('更新成功'));
 			return $this->redirect(array('action' => 'index'));
 		}
+	}
+
+	public function showTeamMembers(){
+		// $this->autoRender = false;
+		$a_team = $this->User->find('all',array(
+			'conditions' => array('User.team' => 'A'),
+			'order' => array('User.points' => 'DESC'),
+		));
+		$b_team = $this->User->find('all',array(
+			'conditions' => array('User.team' => 'B'),
+			'order' => array('User.points' => 'DESC'),
+		));
+		$this->set(compact('a_team','b_team'));
 	}
 }
