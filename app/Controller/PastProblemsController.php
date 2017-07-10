@@ -122,6 +122,13 @@ class PastProblemsController extends AppController {
 			$answer_probelm = Set::extract('PastProblem',$answer_probelm);
 			$this->loadModel('AnswerResult');
 			$this->AnswerResult->storeAnswerResult($answer_result,$answer_probelm);
+
+			// ユーザテーブルに何問目まで進んでいるのか記録する
+			$this->loadModel('User');
+			$id = $this->Auth->user('id');
+			$tmp['User'] = compact('id','times');
+			$this->User->save($tmp);
+			
 		}
 
 		if(!($times >= count($problems))){
