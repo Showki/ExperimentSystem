@@ -24,8 +24,7 @@ class AnswerResultsController extends AppController {
  */
 	public function index() {
 		$answer_results = $this->AnswerResult->getAnswerResult();
-		$answerResults = $this->Paginator->paginate();
-		$this->set(compact('answer_results','answerResults'));
+		$this->set(compact('answer_results'));
 	}
 
 /**
