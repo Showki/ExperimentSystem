@@ -44,7 +44,11 @@ class AnswerResult extends AppModel {
 	}
 
 	public function getAnswerResult(){
-		$answer_results = $this->find('all');
+		$answer_results = $this->find('all',array(
+			'conditions' => array(
+				'AnswerResult.users_id' => $this->__getCurrentUserId(),
+			),
+		));
 		foreach ($answer_results as $key => $result) {
 			$formated_result[$key] 	= $this->toShowFormat($result);
 		}
