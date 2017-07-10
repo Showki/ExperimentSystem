@@ -40,6 +40,16 @@ class AnswerResult extends AppModel {
 		}else{
 			$result['result'] = 0;
 		}
+		$result_id = $this->find('first',array(
+			'conditions' => array(
+				'AnswerResult.users_id' => $this->__getCurrentUserId(),
+				'AnswerResult.past_problems_id' => $answer_result['id']
+			),
+			'fields' => array('id'),
+		));
+		if(!empty($result_id)){
+			$result['id'] = $result_id['AnswerResult']['id'];
+		}
 		return $result;
 	}
 
