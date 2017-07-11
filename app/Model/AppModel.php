@@ -36,4 +36,37 @@ class AppModel extends Model {
         $user_id = $Session->read('Auth.User.id');
         return $user_id;
     }
+    /**
+     * データ収集の際の階層のズレを調整
+     */
+    public function toFlat($old_arr,$index_key){
+        $new_arr = array();
+        array_walk_recursive($old_arr,function($val,$key) use (&$id,&$new_arr,$index_key) {
+            $new_arr[$key == $index_key ? ($id = $val) : $id][$key] = $val;
+        });
+        $new_arr = array_values($new_arr);
+        return $new_arr;
+    }
+    
+    /**
+     * 配列の重複削除
+     */
+    public function uniqueIndex($arr){
+        foreach($arr as $key => $value ){
+            $tmp[] = $value;
+        }
+        $result_arr = array_unique($tmp);
+        return $result_arr;
+    }
+
+    public function getKeyphrase($text){
+		$output	= 'json';
+		$appid	= 'dj0zaiZpPTRFTXJRWm80VDROWCZzPWNvbnN1bWVyc2VjcmV0Jng9MzI-';
+		$url 	= 'http://jlp.yahooapis.jp/KeyphraseService/V1/extract?';
+		$req 	= $url.'appid='.$appid.'&sentence='.urlencode($text).'&output='.$output;
+		$res 	= file_get_contents($req);
+		$result = json_decode($res);
+		return $result;
+	}
+
 }
