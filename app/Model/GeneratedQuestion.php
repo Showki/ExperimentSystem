@@ -18,10 +18,9 @@ class GeneratedQuestion extends AppModel{
 		}
 	}
 
-	public function fetchQuestions($tk_id,$tmpl_id){
+	public function fetchQuestions($tk_id){
 		$questions = $this->find('all',array('conditions' => array(
 			'target_knowledges_id' => $tk_id,
-			'use_template' => $tmpl_id,
 			'type' => 1 //生成問題：1，厳選問題：2
 			)));
 		return $this->changeQuestionIndex($questions);

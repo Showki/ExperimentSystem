@@ -7,40 +7,34 @@ class MakesController extends AppController {
 	);
 
 	public function index(){
-		return $this->redirect(array('action' => 'selectMode'));
+		// return $this->redirect(array('action' => 'selectMode'));
 	}
 
-	public function selectMode(){
-		// $this->storeActivity("問題作成機能｜");
-	}
+	// 本実験で不要の機能
+	// public function selectMode(){
+	// 	// $this->storeActivity("問題作成機能｜");
+	// }
 
+	// 問題自動生成機能
 	public function inputWord(){
 		// $this->storeActivity("問題作成機能｜キーワード入力による検索｜");
 	}
 
-	public function selectCategories(){
-		// $this->storeActivity("問題作成機能｜カテゴリによる検索｜");
-		$categories = $this->Category->find('all');
-		$this->set(compact('categories'));
-	}
+	// 本実験で不要の機能
+	// public function selectCategories(){
+	// 	// $this->storeActivity("問題作成機能｜カテゴリによる検索｜");
+	// 	$categories = $this->Category->find('all');
+	// 	$this->set(compact('categories'));
+	// }
 
-	public function showKeywords($category_id=null){
-		if($category_id){
-			$end_tree_categories = $this->Category->fetchEndCategories($category_id);
-			$categories = $this->Category->toFlat($end_tree_categories,'id');
-			$select_category = $this->Category->fetchCategory($category_id);
-			$keywords = $this->Knowledge->loadKeywords($categories);
+	public function showKeywords(){
+		if(empty($this->request->data['Make']['input_word']))
+			return $this->redirect(array('action' => 'inputWord'));
 
-			// $this->storeActivity("問題作成機能｜カテゴリによる検索->選択：".$select_category."｜");
-		}else{
-			if(empty($this->request->data['Make']['input_word']))
-				return $this->redirect(array('action' => 'selectMode'));
-
-			$word = $this->request->data['Make']['input_word'];
-			$keywords = $this->Knowledge->fetchKeywordFromInput($word);
-			// $this->storeActivity("問題作成機能｜キーワード入力による検索->入力：".$word."｜");
-		}
-
+		$word = $this->request->data['Make']['input_word'];
+		$keywords = $this->Knowledge->fetchKeywordFromInput($word);
+		// $this->storeActivity("問題作成機能｜キーワード入力による検索->入力：".$word."｜");
+		
 		if(!isset($keywords)){
 			$this->Session->setFlash(__('検索結果が 0件であったため、検索画面に戻ります'));
 			$this->redirect(array('controller'=>'makes','action'=>'inputWord'));
@@ -56,8 +50,8 @@ class MakesController extends AppController {
 		if(empty($tk_word))
 			return $this->redirect(array('action' => 'selectMode'));
 
-		$used_flg 	= $this->TargetKnowledge->isUsed($tk_word);
-		$tk_id 		= $this->TargetKnowledge->fetchId($tk_word);
+		$used_flg = $this->TargetKnowledge->isUsed($tk_word);
+		$tk_id = $this->TargetKnowledge->fetchId($tk_word);
 
 		// $this->storeActivity("問題作成機能｜キーワード一覧->選択：".$tk_word."｜");
 
@@ -73,21 +67,20 @@ class MakesController extends AppController {
 			// 生成済みフラグをtrueへ
 			$this->TargetKnowledge->toUsed($tk_id);
 		}
-		$this->redirect(array('controller'=>'makes','action'=>'selectTemplate',$tk_word));
+		$this->redirect(array(
+			'controller'=>'makes',
+			'action'=>'showQuestions',$tk_word
+		));
+		
 	}
 
-	public function selectTemplate($tk_word){
-		$templates = $this->Template->find('all');
-		// $this->storeActivity("問題作成機能｜キーワード一覧->選択：".$tk_word."｜テンプレート一覧｜");
-		$this->set(compact('templates','tk_word'));
-	}
-
-	public function showQuestions($tk_word,$tmpl_id){
-		if(empty($tk_word)||empty($tmpl_id))
+	public function showQuestions($tk_word){
+		if(empty($tk_word))
 			return $this->redirect(array('action' => 'selectMode'));
 
 		$tk_id 					= $this->TargetKnowledge->fetchId($tk_word);
-		$generated_questions 	= $this->GeneratedQuestion->fetchQuestions($tk_id,$tmpl_id);
+		// テンプレートで絞込している箇所
+		$generated_questions 	= $this->GeneratedQuestion->fetchQuestions($tk_id);
 		
 		$exam_id_list 			= $this->Knowledge->fetchExamId($tk_word);
 		$exam_questions 		= $this->PastExam->fetchQuestions($exam_id_list);
