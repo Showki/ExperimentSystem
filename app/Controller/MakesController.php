@@ -1,6 +1,7 @@
 <?php
 App::uses('AppController', 'Controller');
 class MakesController extends AppController {
+	public $components = array('Paginator', 'Session', 'Flash');
 	public $uses = array(
 		'User','Knowledge','Template','Question','Activity','Category',
 		'TargetKnowledge','GeneratedQuestion','GeneratedWord','PastExam',
@@ -112,6 +113,22 @@ class MakesController extends AppController {
 		// $this->redirect(array('controller' => 'histories','action' => 'showMyQuestions'));
 	}
 
+	public function makeManualQuestion(){
+		if ($this->request->is('post')) {
+			$this->loadModel('MadeProblem');
+			$this->MadeProblem->create();
+			$this->request->data['MadeProblem']['user_id'] = $this->Auth->user('id');
+			if ($this->MadeProblem->save($this->request->data)) {
+				$this->Flash->success(__('登録完了しました．'));
+				// return $this->redirect(array('action' => 'index'));
+			} else {
+				$this->Flash->error(__('登録失敗しました．やり直しましょう．'));
+			}
+		}
+		// $answerResult = $this->AnswerResult->find('list');
+		// $this->set(compact('answerResult'));
+
+	}
 	// public function showMadeQuestions(){
 	// 	$this->find
 	// }
