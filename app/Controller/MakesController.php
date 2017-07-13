@@ -29,7 +29,7 @@ class MakesController extends AppController {
 
 	public function showKeywords(){
 		if(empty($this->request->data['Make']['input_word']))
-			return $this->redirect(array('action' => 'inputWord'));
+			return $this->redirect(array('action' => 'inputWord'));	
 
 		$word = $this->request->data['Make']['input_word'];
 		$keywords = $this->Knowledge->fetchKeywordFromInput($word);
@@ -101,12 +101,18 @@ class MakesController extends AppController {
 	public function storeQuestion(){
 		if(empty($this->request->data['edit_confirm']))
 			return $this->redirect(array('action' => 'selectMode'));
-		$store_question['Question'] = $this->request->data['Edit'];
-		$store_question['Question']['user_id'] = $this->Auth->user('id');
-		$this->Question->save($store_question);
-		$stored_question_id = $this->Question->getLastInsertId();
 
+		$this->loadModel('MadeProblem');
+		$store_question['MadeProblem'] = $this->request->data['Edit'];
+		$store_question['MadeProblem']['user_id'] = $this->Auth->user('id');
+		$this->MadeProblem->save($store_question);
+
+		// $stored_question_id = $this->Question->getLastInsertId();
 		// $this->storeActivity("問題作成機能｜生成問題一覧->編集：".$stored_question_id."｜");
-		$this->redirect(array('controller' => 'histories','action' => 'showMyQuestions'));
+		// $this->redirect(array('controller' => 'histories','action' => 'showMyQuestions'));
 	}
+
+	// public function showMadeQuestions(){
+	// 	$this->find
+	// }
 }
