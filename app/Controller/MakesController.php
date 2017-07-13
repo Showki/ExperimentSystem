@@ -120,7 +120,7 @@ class MakesController extends AppController {
 			$this->request->data['MadeProblem']['user_id'] = $this->Auth->user('id');
 			if ($this->MadeProblem->save($this->request->data)) {
 				$this->Flash->success(__('登録完了しました．'));
-				// return $this->redirect(array('action' => 'index'));
+				return $this->redirect(array('action' => 'showMadeQuestions'));
 			} else {
 				$this->Flash->error(__('登録失敗しました．やり直しましょう．'));
 			}
@@ -129,7 +129,14 @@ class MakesController extends AppController {
 		// $this->set(compact('answerResult'));
 
 	}
-	// public function showMadeQuestions(){
-	// 	$this->find
-	// }
+
+	public function showMadeQuestions(){
+		$this->loadModel('MadeProblem');
+		$made_problems = $this->MadeProblem->find('all',array(
+			'conditions' => array('MadeProblem.user_id' => $this->Auth->user('id')),
+		));
+		$made_problems = Set::extract('/MadeProblem/.',$made_problems);
+		debug($made_problems);
+		$this->set(compact('made_problems'));
+	}
 }
