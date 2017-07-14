@@ -134,7 +134,6 @@ class MakesController extends AppController {
 			'conditions' => array('MadeProblem.user_id' => $this->Auth->user('id')),
 		));
 		$made_problems = Set::extract('/MadeProblem/.',$made_problems);
-		debug($made_problems);
 		$this->set(compact('made_problems'));
 	}
 
@@ -152,7 +151,7 @@ class MakesController extends AppController {
 		$problem = $this->MadeProblem->findById($problem_id);
 		$this->set(compact('problem','problem_id'));		
 	}
-	
+
     public function deleteMadeQuestion($question_id=null){
         $this->autoRender = false;
         if($question_id === null)
