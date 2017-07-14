@@ -164,4 +164,8 @@ public function beforeFilter() {
 		));
 		$this->set(compact('a_team','b_team'));
 	}
+
+	public function top(){
+
+	}
 }
