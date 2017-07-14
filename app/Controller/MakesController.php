@@ -112,8 +112,22 @@ class MakesController extends AppController {
 		$made_problems = $this->MadeProblem->find('all',array(
 			'conditions' => array('MadeProblem.user_id' => $this->Auth->user('id')),
 		));
+		$this->loadModel('User');
+		$assigned_team = $this->User->find('first',array(
+			'conditions' => array('User.id' => $this->Auth->user('id')),
+			'fields' => array('User.team'),
+		));
+
+		if($assigned_team['User']['team'] === 'A'){
+			$make_url = 'inputWord';
+		}else if($assigned_team['User']['team'] === 'B'){
+			$make_url = 'makeManualQuestion';
+		}else{
+			$this->Flash->error(__('チームの割振りが済んでません．もう少々お待ち下さい．'));
+			return $this->redirect(array('action' => 'index'));
+		}
 		$made_problems = Set::extract('/MadeProblem/.',$made_problems);
-		$this->set(compact('made_problems'));
+		$this->set(compact('made_problems','make_url'));
 	}
 
     public function editMadeQuestion($problem_id){

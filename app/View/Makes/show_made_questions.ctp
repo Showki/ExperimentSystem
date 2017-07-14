@@ -1,5 +1,17 @@
 <!-- <h3>『<?php echo $user_name ?>』さんが作成した問題一覧</h3> -->
 
+<?php   
+    echo $this->Html->link('戻る',array('action' => 'index'),array(
+        'class' => 'btn btn-success btn-lg',)
+    ); 
+?>
+<br /><br />
+<?php 
+    echo $this->Html->link('新規作成',array('action' => $make_url),array(
+        'class' => 'btn btn-danger btn-lg',)
+    );
+?>
+
 
 <?php foreach($made_problems as $problem): ?>
 <table class="table table-bordered">
