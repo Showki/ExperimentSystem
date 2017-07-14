@@ -11,7 +11,7 @@ App::uses('AppController', 'Controller');
 class UsersController extends AppController {
 
 public function beforeFilter() {
-    $this->Auth->allow();
+    // $this->Auth->allow();
 }
 
 /**
@@ -19,7 +19,7 @@ public function beforeFilter() {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session', 'Flash');
+	public $components = array('Session', 'Flash');
 
 /**
  * index method
@@ -166,6 +166,7 @@ public function beforeFilter() {
 	}
 
 	public function top(){
-
+		$user_name = $this->Auth->user('name');
+		$this->set(compact('user_name'));
 	}
 }
