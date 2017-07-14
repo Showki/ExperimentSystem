@@ -1,32 +1,17 @@
 <?php
 App::uses('AppController', 'Controller');
 class MakesController extends AppController {
-	public $components = array('Paginator', 'Session', 'Flash');
+	public $components = array('Session', 'Flash');
 	public $uses = array(
 		'User','Knowledge','Template','Question','Activity','Category',
 		'TargetKnowledge','GeneratedQuestion','GeneratedWord','PastExam',
 	);
 
 	public function index(){
-		// return $this->redirect(array('action' => 'selectMode'));
 	}
 
-	// 本実験で不要の機能
-	// public function selectMode(){
-	// 	// $this->storeActivity("問題作成機能｜");
-	// }
-
-	// 問題自動生成機能
 	public function inputWord(){
-		// $this->storeActivity("問題作成機能｜キーワード入力による検索｜");
 	}
-
-	// 本実験で不要の機能
-	// public function selectCategories(){
-	// 	// $this->storeActivity("問題作成機能｜カテゴリによる検索｜");
-	// 	$categories = $this->Category->find('all');
-	// 	$this->set(compact('categories'));
-	// }
 
 	public function showKeywords(){
 		if(empty($this->request->data['Make']['input_word']))
@@ -91,24 +76,21 @@ class MakesController extends AppController {
 
 	public function editQuestion($question_id){
 		$question = $this->GeneratedQuestion->findById($question_id);
-
-		// $this->storeActivity("問題作成機能｜生成問題一覧->選択：".$question_id."｜");
-
 		$this->set(compact('question','question_id'));
 	}
 
 	public function storeQuestion(){
-		if(empty($this->request->data['edit_confirm']))
-			return $this->redirect(array('action' => 'selectMode'));
-
-		$this->loadModel('MadeProblem');
-		$store_question['MadeProblem'] = $this->request->data['Edit'];
-		$store_question['MadeProblem']['user_id'] = $this->Auth->user('id');
-		$this->MadeProblem->save($store_question);
-
-		// $stored_question_id = $this->Question->getLastInsertId();
-		// $this->storeActivity("問題作成機能｜生成問題一覧->編集：".$stored_question_id."｜");
-		// $this->redirect(array('controller' => 'histories','action' => 'showMadeQuestionss'));
+		if ($this->request->is('post')) {
+			$this->loadModel('MadeProblem');
+			$store_question['MadeProblem'] = $this->request->data['Edit'];
+			$store_question['MadeProblem']['user_id'] = $this->Auth->user('id');
+			if($this->MadeProblem->save($store_question)){
+				$this->Flash->success(__('登録完了しました．'));
+				return $this->redirect(array('action' => 'showMadeQuestions'));
+			}else{
+				$this->Flash->error(__('登録失敗しました．やり直しましょう．'));
+			}
+		}
 	}
 
 	public function makeManualQuestion(){
@@ -123,9 +105,6 @@ class MakesController extends AppController {
 				$this->Flash->error(__('登録失敗しました．やり直しましょう．'));
 			}
 		}
-		// $answerResult = $this->AnswerResult->find('list');
-		// $this->set(compact('answerResult'));
-
 	}
 
 	public function showMadeQuestions(){
@@ -160,6 +139,4 @@ class MakesController extends AppController {
         $this->MadeProblem->delete($question_id);
         return $this->redirect(array('action' => 'showMadeQuestions'));
     }
-
-
 }
