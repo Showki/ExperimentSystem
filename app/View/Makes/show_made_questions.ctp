@@ -14,25 +14,16 @@
         <th rowspan="2">
         <?php   
             echo $this->Html->link('編集',array(
-                'controller' => 'histories',
-                'action' => 'editMyQuestion',
-                $problem['id']),
-                array(
-                    'class' => 'btn btn-success btn-lg',
-                )
-            ); 
+                'action' => 'editMadeQuestion',$problem['id']),array(
+                    'class' => 'btn btn-success btn-lg',)
+                ); 
         ?>
         <br /><br />
         <?php 
-            echo $this->Html->link(
-                '削除',array(
-                    'controller' => 'histories',
-                    'action' => 'deleteMyQuestion',
-                    $problem['id']),
-                    array(
-                        'confirm' => '本当にこの問題を削除しますか？',
-                    'class' => 'btn btn-danger btn-lg',
-                )
+            echo $this->Html->link('削除',array(
+                'action' => 'deleteMadeQuestion',$problem['id']),array(
+                'confirm' => '本当にこの問題を削除しますか？',
+                'class' => 'btn btn-danger btn-lg',)
             ); 
         ?>
         </th>

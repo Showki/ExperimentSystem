@@ -86,8 +86,6 @@ class MakesController extends AppController {
 		$exam_id_list 			= $this->Knowledge->fetchExamId($tk_word);
 		$exam_questions 		= $this->PastExam->fetchQuestions($exam_id_list);
 
-		// $this->storeActivity("問題作成機能｜キーワード一覧->選択：".$tk_word."｜テンプレート一覧->選択：".$tmpl_id."｜");
-
 		$this->set(compact('generated_questions','exam_questions','tk_word'));
 	}
 
@@ -110,7 +108,7 @@ class MakesController extends AppController {
 
 		// $stored_question_id = $this->Question->getLastInsertId();
 		// $this->storeActivity("問題作成機能｜生成問題一覧->編集：".$stored_question_id."｜");
-		// $this->redirect(array('controller' => 'histories','action' => 'showMyQuestions'));
+		// $this->redirect(array('controller' => 'histories','action' => 'showMadeQuestionss'));
 	}
 
 	public function makeManualQuestion(){
@@ -139,4 +137,30 @@ class MakesController extends AppController {
 		debug($made_problems);
 		$this->set(compact('made_problems'));
 	}
+
+    public function editMadeQuestion($problem_id){
+		$this->loadModel('MadeProblem');
+		if ($this->request->is('post')) {
+			$this->MadeProblem->create();
+			if ($this->MadeProblem->save($this->request->data)) {
+				$this->Flash->success(__('更新されました．'));
+				return $this->redirect(array('action' => 'showMadeQuestions'));
+			} else {
+				$this->Flash->error(__('更新失敗しました．やり直してください．'));
+			}
+		}
+		$problem = $this->MadeProblem->findById($problem_id);
+		$this->set(compact('problem','problem_id'));		
+	}
+	
+    public function deleteMadeQuestion($question_id=null){
+        $this->autoRender = false;
+        if($question_id === null)
+            return $this->redirect(array('action' => 'showMadeQuestions'));
+		$this->loadModel('MadeProblem');
+        $this->MadeProblem->delete($question_id);
+        return $this->redirect(array('action' => 'showMadeQuestions'));
+    }
+
+
 }
