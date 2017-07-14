@@ -3,11 +3,12 @@
 	<table cellpadding="0" cellspacing="0">
 	<thead>
 	<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
-			<th><?php echo $this->Paginator->sort('student_number'); ?></th>
-			<th><?php echo $this->Paginator->sort('name'); ?></th>
-			<th><?php echo $this->Paginator->sort('points'); ?></th>
-			<th><?php echo $this->Paginator->sort('team'); ?></th>
+			<th>ID</th>
+			<th>学籍番号</th>
+			<th>氏名</th>
+			<th>解答数</th>
+			<th>点数</th>
+			<th>チーム</th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	</thead>
@@ -17,6 +18,7 @@
 		<td><?php echo h($user['User']['id']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['student_number']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['name']); ?>&nbsp;</td>
+		<td><?php echo h($user['User']['times']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['points']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['team']); ?>&nbsp;</td>
 		<td class="actions">
@@ -29,18 +31,7 @@
 	</tbody>
 	</table>
 	<p>
-	<?php
-	echo $this->Paginator->counter(array(
-		'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
-	));
-	?>	</p>
-	<div class="paging">
-	<?php
-		echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
-		echo $this->Paginator->numbers(array('separator' => ''));
-		echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
-	?>
-	</div>
+
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
