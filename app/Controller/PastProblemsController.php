@@ -22,9 +22,10 @@ class PastProblemsController extends AppController {
  *
  * @return void
  */
-	public function index() {
-		$this->PastProblem->recursive = 0;
-		$this->set('pastProblems', $this->Paginator->paginate());
+
+
+	public function showTestProblems() {
+		$this->set('pastProblems', $this->PastProblem->find('all'));
 	}
 
 /**
