@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "cedb9bdedc89e2ec61b523ce22ed4f50",
-    "content-hash": "c8b55f25c0c11774185b16f934d1a5b7",
+    "hash": "039414379f8aaef2e9329752134b9a8a",
+    "content-hash": "abd6f4a7636ce657062e2784598b460b",
     "packages": [
         {
             "name": "cakedc/migrations",
@@ -207,6 +207,47 @@
                 "zikula"
             ],
             "time": "2017-04-24 06:37:16"
+        },
+        {
+            "name": "slywalker/boost_cake",
+            "version": "1.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/slywalker/cakephp-plugin-boost_cake.git",
+                "reference": "bb1fa0d96b2c2c8fad7b0ccfab2ca2f231f66c3e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/slywalker/cakephp-plugin-boost_cake/zipball/bb1fa0d96b2c2c8fad7b0ccfab2ca2f231f66c3e",
+                "reference": "bb1fa0d96b2c2c8fad7b0ccfab2ca2f231f66c3e",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "*",
+                "php": ">=5.3.0"
+            },
+            "suggest": {
+                "twbs/bootstrap": "Bootstrap framework"
+            },
+            "type": "cakephp-plugin",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Yasuo Harada",
+                    "email": "slywalker.net@gmail.com"
+                }
+            ],
+            "description": "BoostCake is a plugin for CakePHP using Bootstrap",
+            "homepage": "http://slywalker.github.io/cakephp-plugin-boost_cake/",
+            "keywords": [
+                "bootstrap",
+                "cakephp",
+                "twitter"
+            ],
+            "time": "2014-11-07 10:36:43"
         }
     ],
     "packages-dev": [
@@ -582,7 +623,7 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v2.8.22",
+            "version": "v2.8.24",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
