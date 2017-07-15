@@ -135,6 +135,7 @@ class PastProblemsController extends AppController {
 
 		// $this->autoRender = false;
 	public function answer() {
+		$this->layout = 'experiment';
 		$problems = $this->PastProblem->find('all');
 
 		// viewからのpostがないときは初アクセスとみなし，0からスタート
