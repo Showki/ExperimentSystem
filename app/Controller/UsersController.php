@@ -10,9 +10,6 @@ App::uses('AppController', 'Controller');
  */
 class UsersController extends AppController {
 
-public function beforeFilter() {
-    // $this->Auth->allow();
-}
 
 /**
  * Components
@@ -22,6 +19,7 @@ public function beforeFilter() {
 	public $components = array('Session', 'Flash');
 
 	public function top(){
+		$this->layout = 'experiment';
 		$user_name = $this->Auth->user('name');
 		$team = $this->User->find('first',array(
 			'conditions' => array('id' => $this->Auth->user('id')),
@@ -119,6 +117,7 @@ public function beforeFilter() {
 	}
 
 	public function login() {
+		$this->layout = 'experiment';
 	    if($this->request->is('post')) {
 	        if($this->Auth->login()) {
 	            $this->redirect($this->Auth->redirect());
