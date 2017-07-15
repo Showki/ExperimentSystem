@@ -4,7 +4,6 @@
 	<meta charset="utf-8">
 	<title>
 		<?php echo __('もりけん｜実験システム'); ?>
-		<?php //echo $title_for_layout; ?>
 	</title>
 	<?php echo $this->Html->meta ('favicon.ico','./../../webroot/favicon.ico', array ('type' => 'icon')); ?>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,27 +20,11 @@
 	</style>
 	<?php echo $this->Html->css('jquery.treegrid'); ?>
 	<?php echo $this->Html->css('mycss'); ?>
-	<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-	<!--[if lt IE 9]>
-	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-	<!-- Le fav and touch icons -->
-	<!--
-	<link rel="shortcut icon" href="/ico/favicon.ico">
-	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/ico/apple-touch-icon-144-precomposed.png">
-	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/ico/apple-touch-icon-114-precomposed.png">
-	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/ico/apple-touch-icon-72-precomposed.png">
-	<link rel="apple-touch-icon-precomposed" href="/ico/apple-touch-icon-57-precomposed.png">
-	-->
 	<?php
-	echo $this->fetch('meta');
-	echo $this->fetch('css');
+        echo $this->fetch('meta');
+        echo $this->fetch('css');
 	?>
 </head>
-
-
-
-
 
 <body>
 	<nav class="navbar navbar-inverse navbar-fixed-top">
@@ -78,8 +61,8 @@
 			<br />
 			<?php echo $this->Session->flash(); ?>
 			<?php echo $this->fetch('content'); ?>
-	</div> <!-- /container -->
-
+	</div>
+    
 	<!-- Le javascript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
