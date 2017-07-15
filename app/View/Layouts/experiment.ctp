@@ -49,7 +49,7 @@
 			<li><?php echo $this->Html->link('HOME',array('controller' => 'users','action' => 'top'));?></li>
 			<li><?php echo $this->Html->link('問題解答',array('controller' => 'past_problems','action' => 'answer'));?></li>
 			<li><?php echo $this->Html->link('問題作成/履歴',array('controller' => 'makes','action' => 'showMadeQuestions'));?></li>
-			<li><?php echo $this->Html->link('過去問題',array('controller' => 'makes','action' => 'showMadeQuestions'));?></li>
+			<li><?php echo $this->Html->link('過去問題',array('controller' => 'past_problems','action' => 'index'));?></li>
 			<li><?php echo $this->Html->link('アンケート','https://fksktest');?></li>
             <li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
 			<li><?php echo $this->Html->link('ログアウト',array('controller' => 'users','action' => 'logout'));?></li>
