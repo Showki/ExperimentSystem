@@ -1,0 +1,70 @@
+/*カテゴリのツリー表示*/
+
+.tree {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.tree tr {
+    text-align: left;
+    vertical-align: top;
+    background-color: #fff;
+    border-bottom: 1px solid #BDBDBD;
+    font-weight: bolder;
+}
+
+.tree tr .category {
+    font-size: 20px;
+    width: 40%;
+    padding: 8px;
+    color: #303F9F;
+}
+
+.tree tr .additional {
+    width: 40%;
+    padding: 8px;
+    color: #545454;
+}
+
+
+/*リストで表示するものは以下で統一して使う*/
+
+.word_list {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.word_list tr {
+    text-align: left;
+    vertical-align: top;
+    background-color: #fff;
+    border-bottom: 1px solid #BDBDBD;
+    font-weight: bolder;
+}
+
+.word_list tr .keyword {
+    font-size: 20px;
+    width: 40%;
+    padding: 8px;
+    color: #D22121;
+}
+
+.word_list tr .additional {
+    width: 40%;
+    padding: 8px;
+    color: #545454;
+}
+
+.answer {
+    color: red;
+    /*font-style: bolder !important;*/
+}
+
+.textarea_label {
+    font-size: 18px;
+    text-align: left;
+}
+
+.mb10 {
+    margin-bottom: 10;
+}
