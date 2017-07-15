@@ -1,56 +1,65 @@
-<div class="pastProblems index">
-	<h2><?php echo __('Past Problems'); ?></h2>
-	<table cellpadding="0" cellspacing="0">
-	<thead>
+<div class="text-center">
+<?php echo $this->Form->create('PastProblem',array(
+    'type' => 'post',
+    // 'url' => '',
+));?>
+<?php echo $this->Form->input('year', array(
+        'type'=>'select', 
+        'div'=>false, 
+        'label'=>false, 
+        'options'=> $year, 'empty'=>'年を選択してください')); 
+?>
+&nbsp 
+<?php echo $this->Form->input('grade', array(
+        'type'=>'select', 
+        'div'=>false, 
+        'label'=>false, 
+        'options'=> $grade, 'empty'=>'級を選択してください')); 
+?>
+&nbsp 
+<?php echo $this->Form->submit('確定',array(
+    'div' => false,
+    'name' => "select_confirm",
+    'class' => 'btn btn-success btn-lg',
+    ));?>
+</div>
+
+<br /><hr /><br />
+
+<?php if(!empty($questions) && !empty($select_year) && !empty($select_grade)): ?>
+<h2>
+    <?php echo "平成 ".$select_year." 年度： ".$select_grade." 級<br />"; ?>
+</h2>
+<hr />
+<?php foreach($questions as $key =>$question): ?>
+<table class="table table-bordered">
+<tbody>
+
+
 	<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
-			<th><?php echo $this->Paginator->sort('problem_number'); ?></th>
-			<th><?php echo $this->Paginator->sort('sentence'); ?></th>
-			<th><?php echo $this->Paginator->sort('option_1'); ?></th>
-			<th><?php echo $this->Paginator->sort('option_2'); ?></th>
-			<th><?php echo $this->Paginator->sort('option_3'); ?></th>
-			<th><?php echo $this->Paginator->sort('option_4'); ?></th>
-			<th><?php echo $this->Paginator->sort('correct_number'); ?></th>
-			<th class="actions"><?php echo __('Actions'); ?></th>
+		<th class="col-xs-6 col-sm-1" rowspan="2" scope="row">
+			<?php 
+                $number = (int)substr($question['PastExam']['id'],5,3);
+
+				echo "第".(string)$number."問";
+			?>
+		</th>
+		<td colspan="4">
+            <?php echo $question['PastExam']['sentence'] ?>
+            
+            <?php if($question['PastExam']['image_flg'] == 1):?>
+                <br /><br />
+                <p>※画像は非表示となっております</p>
+            <?php endif; ?>
+        </td>
 	</tr>
-	</thead>
-	<tbody>
-	<?php foreach ($pastProblems as $pastProblem): ?>
 	<tr>
-		<td><?php echo h($pastProblem['PastProblem']['id']); ?>&nbsp;</td>
-		<td><?php echo h($pastProblem['PastProblem']['problem_number']); ?>&nbsp;</td>
-		<td><?php echo h($pastProblem['PastProblem']['sentence']); ?>&nbsp;</td>
-		<td><?php echo h($pastProblem['PastProblem']['option_1']); ?>&nbsp;</td>
-		<td><?php echo h($pastProblem['PastProblem']['option_2']); ?>&nbsp;</td>
-		<td><?php echo h($pastProblem['PastProblem']['option_3']); ?>&nbsp;</td>
-		<td><?php echo h($pastProblem['PastProblem']['option_4']); ?>&nbsp;</td>
-		<td><?php echo h($pastProblem['PastProblem']['correct_number']); ?>&nbsp;</td>
-		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $pastProblem['PastProblem']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $pastProblem['PastProblem']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $pastProblem['PastProblem']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $pastProblem['PastProblem']['id']))); ?>
-		</td>
+		<td class="col-xs-6 col-sm-3 answer"><?php echo $question['PastExam']['answer'] ?></td>
+		<td class="col-xs-6 col-sm-2"><?php echo $question['PastExam']['wrong_answer_1'] ?></td>
+		<td class="col-xs-6 col-sm-2"><?php echo $question['PastExam']['wrong_answer_2'] ?></td>
+		<td class="col-xs-6 col-sm-2"><?php echo $question['PastExam']['wrong_answer_3'] ?></td>
 	</tr>
+</tbody>
+</table>
 <?php endforeach; ?>
-	</tbody>
-	</table>
-	<p>
-	<?php
-	echo $this->Paginator->counter(array(
-		'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
-	));
-	?>	</p>
-	<div class="paging">
-	<?php
-		echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
-		echo $this->Paginator->numbers(array('separator' => ''));
-		echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
-	?>
-	</div>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('New Past Problem'), array('action' => 'add')); ?></li>
-	</ul>
-</div>
+<?php endif; ?>

@@ -22,7 +22,35 @@ class PastProblemsController extends AppController {
  *
  * @return void
  */
+	public function index() {
+		$this->layout = 'experiment';
+        $year = array(
+            "2012" => "H24",
+            "2013" => "H25",
+            "2014" => "H26",
+        );
+        $grade = array(
+            "3" => "3級",
+            "2" => "2級",
+        );
+		$this->loadModel('PastExam');
 
+        if(!empty($this->request->data['PastProblem'])){
+            $select_year    = $this->request->data['PastProblem']['year'];
+            $select_grade   = $this->request->data['PastProblem']['grade'];
+
+            $resource_key   = $select_year.$select_grade;
+            $questions      = $this->PastExam->find('all',array(
+                'conditions' => array(
+                    'id like' => $resource_key."%"
+                ),
+            ));
+            $select_year = (string)((int)$select_year-1988);
+            $this->set(compact('year','grade','questions','select_year','select_grade'));
+        }else{
+            $this->set(compact('year','grade'));
+        }
+    }
 
 	public function showTestProblems() {
 		$this->set('pastProblems', $this->PastProblem->find('all'));
