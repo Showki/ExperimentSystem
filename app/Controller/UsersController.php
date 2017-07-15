@@ -21,6 +21,16 @@ public function beforeFilter() {
  */
 	public $components = array('Session', 'Flash');
 
+	public function top(){
+		$user_name = $this->Auth->user('name');
+		$team = $this->User->find('first',array(
+			'conditions' => array('id' => $this->Auth->user('id')),
+			'fields' => array('team')
+			));
+		$team = $team['User']['team'];
+		$this->set(compact('user_name','team'));
+	}
+
 /**
  * index method
  *
@@ -153,7 +163,6 @@ public function beforeFilter() {
 	}
 
 	public function showTeamMembers(){
-		// $this->autoRender = false;
 		$a_team = $this->User->find('all',array(
 			'conditions' => array('User.team' => 'A'),
 			'order' => array('User.points' => 'DESC'),
@@ -163,10 +172,5 @@ public function beforeFilter() {
 			'order' => array('User.points' => 'DESC'),
 		));
 		$this->set(compact('a_team','b_team'));
-	}
-
-	public function top(){
-		$user_name = $this->Auth->user('name');
-		$this->set(compact('user_name'));
 	}
 }
