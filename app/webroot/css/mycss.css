@@ -48,10 +48,23 @@
 .option_box {
     width: 700px;
     float: left;
-    margin-left: 100px;
+    margin-left: 200px;
 }
 
 .answer_btn {
     float: right;
     margin-right: 100px;
+}
+
+.operation_btn_box {
+    margin: 30px auto;
+    width: 50%;
+}
+
+.op_btn1 {
+    float: left;
+}
+
+.op_btn1 {
+    float: right;
 }

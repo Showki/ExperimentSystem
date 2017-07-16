@@ -6,7 +6,9 @@ class MakesController extends AppController {
 		'User','Knowledge','Template','Question','Activity','Category',
 		'TargetKnowledge','GeneratedQuestion','GeneratedWord','PastExam',
 	);
-
+    public function beforeFilter(){
+        $this->layout = 'experiment';
+    }
 	public function index(){
 	}
 
