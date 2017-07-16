@@ -7,7 +7,6 @@
 
 <div class="option_box">
 <?php
-
 echo $this->Form->create('PastProblem',array(
 	'type' => 'post','url' => 'answer')
 );
@@ -19,7 +18,6 @@ echo $this->Form->input('select_option', array(
 	'after' => '</div>',
 	'separator' => '<div class="radio">',
 	'value' => 0,
-	'div' => 'radio-icon'
 ));
 echo $this->Form->hidden('PastProblem.times',array('value' => $times));
 echo $this->Form->hidden('PastProblem.id',array('value' => $problem['PastProblem']['id']));	
