@@ -27,12 +27,17 @@
 <br/>
 <?php 
     echo $this->Html->link('④作成問題解答',array(
-        'controller' => 'xxxx_problems','action' => 'answer',),array(
+        'action' => '',),array(
             'class' => 'btn btn-default btn-lg top_btn',
+            'disabled' => 'disabled'
         )); 
 ?>
 <?php 
-    echo $this->Html->link('⑤アンケート',array('controller' => 'histories','action' => 'showPastExam',),array('class' => 'btn btn-default btn-lg top_btn',)); 
+    echo $this->Html->link('⑤アンケート',array(
+        'action' => '',),array(
+            'class' => 'btn btn-default btn-lg top_btn',
+            'disabled' => 'disabled'
+        )); 
 ?>
 </div>
 
