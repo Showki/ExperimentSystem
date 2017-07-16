@@ -77,11 +77,15 @@ class AnswerResultsController extends AppController {
 	public function edit($times = null,$id = null) {
 		if ($this->request->is(array('post', 'put'))) {
 			debug($this->request->data);
-			if ($this->AnswerResult->save($this->request->data)) {
-				$this->Flash->success(__('正常に保存されました．'));
+			if ($this->AnswerResult->save($this->request->data)) {				
+				$this->Session->setFlash(__('正常に保存されました．'),'alert',array(
+					'plugin' => 'BoostCake','class' => 'alert-success'
+				));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Flash->error(__('正常に保存されませんでした．'));
+				$this->Session->setFlash(__('正常に保存されませんでした．'),'alert',array(
+					'plugin' => 'BoostCake','class' => 'alert-danger'
+				));
 			}
 		} else {
 			$answer_result_id = $this->request->query['id'];
