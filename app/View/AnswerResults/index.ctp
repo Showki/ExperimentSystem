@@ -1,6 +1,6 @@
-<h2><?php echo __('Answer Results'); ?></h2>
-
-<table cellpadding="0" cellspacing="0">
+<h2><?php echo __('回答結果一覧'); ?></h2>
+<br />
+<table class="table table-bordered">
 <thead>
 	<tr>
 		<th>No</th>
@@ -20,7 +20,9 @@
 				'action' => 'edit',
 				'?' => array(
 					'times' => $key+1,
-					'id' => $answer_result['id'])
+					'id' => $answer_result['id'])),
+				array(
+                    'class' => 'btn btn-success btn-lg',
 				));
 			?>
 			</td>

@@ -17,6 +17,11 @@ class AnswerResultsController extends AppController {
  */
 	public $components = array('Paginator', 'Session', 'Flash');
 
+
+    public function beforeFilter(){
+        $this->layout = 'experiment';
+    }
+
 /**
  * index method
  *
