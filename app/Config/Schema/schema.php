@@ -10,6 +10,7 @@ class AppSchema extends CakeSchema {
 
 	public $answer_results = array(
 		'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false, 'key' => 'primary'),
+		'users_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false),
 		'past_problems_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false),
 		'select_number' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false),
 		'result' => array('type' => 'boolean', 'null' => false, 'default' => null, 'comment' => '0:wrong 1:correct'),
@@ -20,6 +21,24 @@ class AppSchema extends CakeSchema {
 			'PRIMARY' => array('column' => 'id', 'unique' => 1)
 		),
 		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB', 'comment' => '過去問題と作成問題の結果を記録するテーブル')
+	);
+
+	public $made_problems = array(
+		'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false, 'key' => 'primary'),
+		'user_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false),
+		'generated_questions_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false),
+		'sentence' => array('type' => 'text', 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
+		'answer' => array('type' => 'text', 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
+		'wrong_answer_1' => array('type' => 'text', 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
+		'wrong_answer_2' => array('type' => 'text', 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
+		'wrong_answer_3' => array('type' => 'text', 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
+		'reference' => array('type' => 'text', 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
+		'created' => array('type' => 'datetime', 'null' => false, 'default' => null),
+		'modified' => array('type' => 'datetime', 'null' => false, 'default' => null),
+		'indexes' => array(
+			'PRIMARY' => array('column' => 'id', 'unique' => 1)
+		),
+		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
 	);
 
 	public $past_problems = array(
@@ -50,11 +69,12 @@ class AppSchema extends CakeSchema {
 
 	public $users = array(
 		'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 100, 'unsigned' => false, 'key' => 'primary'),
-		'student_number' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 100, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
+		'student_number' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 10, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 		'name' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 100, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-		'ponts' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false),
-		'team' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 100, 'collate' => 'utf8_esperanto_ci', 'charset' => 'utf8'),
-		'password' => array('type' => 'text', 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
+		'points' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false),
+		'times' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false),
+		'team' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 1, 'collate' => 'utf8_esperanto_ci', 'charset' => 'utf8'),
+		'password' => array('type' => 'string', 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 		'indexes' => array(
 			'PRIMARY' => array('column' => 'id', 'unique' => 1)
 		),
