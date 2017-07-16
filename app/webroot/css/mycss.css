@@ -68,3 +68,17 @@
 .op_btn1 {
     float: right;
 }
+
+.top_btn_box {
+    margin: 50px auto;
+    width: 70%;
+    text-align: center;
+}
+
+.top_btn {
+    margin: 25px 25px 25px 25px;
+}
+
+.top_info_box {
+    text-align: center;
+}
