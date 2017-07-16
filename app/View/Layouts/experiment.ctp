@@ -12,14 +12,13 @@
 
 	<!-- Le styles -->
 	<?php echo $this->Html->css('bootstrap'); ?>
-	<?php echo $this->Html->css('buttuns'); ?>
-	<style>
+	<?php //echo $this->Html->css('buttuns'); ?>
+	<?php echo $this->Html->css('mycss'); ?>
+<style>
 	body {
 		padding-top: 60px;  /*60px to make the container go all the way to the bottom of the topbar */
 	}
 	</style>
-	<?php echo $this->Html->css('jquery.treegrid'); ?>
-	<?php echo $this->Html->css('mycss'); ?>
 	<?php
         echo $this->fetch('meta');
         echo $this->fetch('css');

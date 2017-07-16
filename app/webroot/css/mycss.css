@@ -1,32 +1,3 @@
-/*カテゴリのツリー表示*/
-
-.tree {
-    width: 80%;
-    margin: 0 auto;
-}
-
-.tree tr {
-    text-align: left;
-    vertical-align: top;
-    background-color: #fff;
-    border-bottom: 1px solid #BDBDBD;
-    font-weight: bolder;
-}
-
-.tree tr .category {
-    font-size: 20px;
-    width: 40%;
-    padding: 8px;
-    color: #303F9F;
-}
-
-.tree tr .additional {
-    width: 40%;
-    padding: 8px;
-    color: #545454;
-}
-
-
 /*リストで表示するものは以下で統一して使う*/
 
 .word_list {
@@ -67,4 +38,21 @@
 
 .mb10 {
     margin-bottom: 10;
+}
+
+.sentence_box {
+    width: 900px;
+    margin: 0 auto;
+}
+
+.option_box {
+    width: 700px;
+    float: left;
+    margin-left: 100px;
+}
+
+.answer_btn {
+    /* text-align: right; */
+    float: right;
+    margin-right: 100px;
 }
