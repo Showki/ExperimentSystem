@@ -145,7 +145,7 @@ class AnswerResultsController extends AppController {
 			return $this->redirect(array('controller' => 'users', 'action' => 'top'));
 		}else{
 			$this->Session->setFlash(__(
-				'採点が完了しました．指示が出るまでお待ち下さい．'), 'alert', array(
+				'採点できませんでした．やり直してください．'), 'alert', array(
 					'plugin' => 'BoostCake',
 					'class' => 'alert-danger'
 			));
