@@ -1,14 +1,14 @@
 <h2><?php echo __('回答結果一覧'); ?></h2>
 <br />
 <table class="table table-bordered">
-<thead>
-	<tr>
-		<th>No</th>
-		<th>問題文</th>
-		<th>解答</th>
-		<th></th>
-	</tr>
-</thead>
+	<thead>
+		<tr>
+			<th>No</th>
+			<th>問題文</th>
+			<th>解答</th>
+			<th></th>
+		</tr>
+	</thead>
 	<tbody>
 	<?php foreach ($answer_results as $key => $answer_result): ?>
 		<tr>
@@ -30,3 +30,9 @@
 	<?php endforeach; ?>
 	</tbody>
 </table>
+<div class="submit_box">
+<?php echo $this->html->link('確定する',array(
+	'action' => 'sum_points'),array(
+		'class' => 'btn btn-danger btn-lg btn-block'));
+?>
+</div>
