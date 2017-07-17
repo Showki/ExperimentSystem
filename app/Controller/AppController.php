@@ -35,6 +35,14 @@ class AppController extends Controller {
     public $components = array(
         'DebugKit.Toolbar',
         'Auth' => array(
+            'loginAction' => array(
+                'controller' => 'Users',
+                'action' => 'login'
+            ),
+            'loginRedirect' => array(
+                'controller' => 'Users',
+                'action' => 'top'
+            ),
             'authenticate' => array(
                 'Form' => array(
                     'passwordHasher' => 'Blowfish',

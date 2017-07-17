@@ -20,7 +20,7 @@ class UsersController extends AppController {
 		$this->layout = 'login';
 	    if($this->request->is('post')) {
 	        if($this->Auth->login()) {
-	            $this->redirect($this->Auth->redirect());
+	            return $this->redirect(array('action' => 'top'));
 	        }else{
 				$this->Session->setFlash(__(
 					'ログイン失敗しました．IDかパスワードが間違っています．'), 'alert', array(
