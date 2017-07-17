@@ -87,10 +87,18 @@ class MakesController extends AppController {
 			$store_question['MadeProblem'] = $this->request->data['Edit'];
 			$store_question['MadeProblem']['user_id'] = $this->Auth->user('id');
 			if($this->MadeProblem->save($store_question)){
-				$this->Flash->success(__('登録完了しました．'));
+				$this->Session->setFlash(__(
+					'登録完了しました．'), 'alert', array(
+						'plugin' => 'BoostCake',
+						'class' => 'alert-success'
+				));
 				return $this->redirect(array('action' => 'showMadeQuestions'));
 			}else{
-				$this->Flash->error(__('登録失敗しました．やり直しましょう．'));
+				$this->Session->setFlash(__(
+					'登録失敗しました．やり直しましょう．'), 'alert', array(
+						'plugin' => 'BoostCake',
+						'class' => 'alert-danger'
+				));
 			}
 		}
 	}
@@ -101,10 +109,18 @@ class MakesController extends AppController {
 			$this->MadeProblem->create();
 			$this->request->data['MadeProblem']['user_id'] = $this->Auth->user('id');
 			if ($this->MadeProblem->save($this->request->data)) {
-				$this->Flash->success(__('登録完了しました．'));
+				$this->Session->setFlash(__(
+					'登録完了しました．'), 'alert', array(
+						'plugin' => 'BoostCake',
+						'class' => 'alert-success'
+				));
 				return $this->redirect(array('action' => 'showMadeQuestions'));
 			} else {
-				$this->Flash->error(__('登録失敗しました．やり直しましょう．'));
+				$this->Session->setFlash(__(
+					'登録失敗しました．やり直しましょう．'), 'alert', array(
+						'plugin' => 'BoostCake',
+						'class' => 'alert-danger'
+				));
 			}
 		}
 	}
@@ -125,7 +141,11 @@ class MakesController extends AppController {
 		}else if($assigned_team['User']['team'] === 'B'){
 			$make_url = 'makeManualQuestion';
 		}else{
-			$this->Flash->error(__('チームの割振りが済んでません．もう少々お待ち下さい．'));
+			$this->Session->setFlash(__(
+				'チームの割振りが済んでません．もう少々お待ち下さい．'), 'alert', array(
+					'plugin' => 'BoostCake',
+					'class' => 'alert-danger'
+			));
 			return $this->redirect(array('action' => 'index'));
 		}
 		$made_problems = Set::extract('/MadeProblem/.',$made_problems);
@@ -137,10 +157,18 @@ class MakesController extends AppController {
 		if ($this->request->is('post')) {
 			$this->MadeProblem->create();
 			if ($this->MadeProblem->save($this->request->data)) {
-				$this->Flash->success(__('更新されました．'));
+				$this->Session->setFlash(__(
+					'更新されました．'), 'alert', array(
+						'plugin' => 'BoostCake',
+						'class' => 'alert-success'
+				));
 				return $this->redirect(array('action' => 'showMadeQuestions'));
 			} else {
-				$this->Flash->error(__('更新失敗しました．やり直してください．'));
+				$this->Session->setFlash(__(
+					'更新失敗しました．やり直してください．'), 'alert', array(
+						'plugin' => 'BoostCake',
+						'class' => 'alert-danger'
+				));
 			}
 		}
 		$problem = $this->MadeProblem->findById($problem_id);
