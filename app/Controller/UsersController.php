@@ -1,23 +1,12 @@
 <?php
 App::uses('AppController', 'Controller');
-/**
- * Users Controller
- *
- * @property User $User
- * @property PaginatorComponent $Paginator
- * @property SessionComponent $Session
- * @property FlashComponent $Flash
- */
+
 class UsersController extends AppController {
 
 	public function beforeFilter(){
 		$this->Auth->allow();
 	}
-/**
- * Components
- *
- * @var array
- */
+
 	public $components = array('Session', 'Flash');
 
 	public function top(){
@@ -31,23 +20,11 @@ class UsersController extends AppController {
 		$this->set(compact('user_name','team'));
 	}
 
-/**
- * index method
- *
- * @return void
- */
 	public function index() {
 		$this->User->recursive = 0;
 		$this->set('users', $this->User->find('all'));
 	}
 
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
 	public function view($id = null) {
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
@@ -56,11 +33,6 @@ class UsersController extends AppController {
 		$this->set('user', $this->User->find('first', $options));
 	}
 
-/**
- * add method
- *
- * @return void
- */
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->User->create();
@@ -73,13 +45,6 @@ class UsersController extends AppController {
 		}
 	}
 
-/**
- * edit method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
 	public function edit($id = null) {
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
@@ -97,13 +62,6 @@ class UsersController extends AppController {
 		}
 	}
 
-/**
- * delete method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
 	public function delete($id = null) {
 		$this->User->id = $id;
 		if (!$this->User->exists()) {
@@ -134,8 +92,6 @@ class UsersController extends AppController {
 		$this->redirect($logoutUrl);
 	}
 
-
-
 	public function assignTeam(){
 		$this->autoRender = false;
 		$sort_users = $this->User->find('all',array(
@@ -158,27 +114,4 @@ class UsersController extends AppController {
 		));
 		$this->set(compact('a_team','b_team'));
 	}
-
-	// public function addTestUsers() {
-	// 	$this->autoRender = false;
-	// 	if($this->User->addTestUsers()){
-	// 		$this->Session->setFlash(__('登録成功'));
-	// 		return $this->redirect(array('action' => 'index'));
-	// 	}
-	// }
-	// public function deleteTestUsers(){
-	// 	$this->autoRender = false;
-	// 	$conditions = array('User.name like' => '%テストユーザ%');
-	// 	if($this->User->deleteAll($conditions,false)){
-	// 		$this->Session->setFlash(__('削除成功'));
-	// 		return $this->redirect(array('action' => 'index'));
-	// 	}
-	// }
-	// public function passwordHash(){
-	// 	$this->autoRender = false;
-	// 	if($this->User->passHash()){
-	// 		$this->Session->setFlash(__('ハッシュ成功'));
-	// 		return $this->redirect(array('action' => 'index'));
-	// 	}
-	// }
 }
