@@ -3,10 +3,6 @@ App::uses('AppController', 'Controller');
 
 class UsersController extends AppController {
 
-	public function beforeFilter(){
-		$this->Auth->allow();
-	}
-
 	public $components = array('Session', 'Flash');
 
 	public function top(){
@@ -18,62 +14,6 @@ class UsersController extends AppController {
 			));
 		$team = $team['User']['team'];
 		$this->set(compact('user_name','team'));
-	}
-
-	public function index() {
-		$this->User->recursive = 0;
-		$this->set('users', $this->User->find('all'));
-	}
-
-	public function view($id = null) {
-		if (!$this->User->exists($id)) {
-			throw new NotFoundException(__('Invalid user'));
-		}
-		$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
-		$this->set('user', $this->User->find('first', $options));
-	}
-
-	public function add() {
-		if ($this->request->is('post')) {
-			$this->User->create();
-			if ($this->User->save($this->request->data)) {
-				$this->Flash->success(__('正常に登録されました．'));
-				return $this->redirect(array('action' => 'index'));
-			} else {
-				$this->Flash->error(__('ユーザ登録ができませんでした．やり直してみてください．'));
-			}
-		}
-	}
-
-	public function edit($id = null) {
-		if (!$this->User->exists($id)) {
-			throw new NotFoundException(__('Invalid user'));
-		}
-		if ($this->request->is(array('post', 'put'))) {
-			if ($this->User->save($this->request->data)) {
-				$this->Flash->success(__('The user has been saved.'));
-				return $this->redirect(array('action' => 'index'));
-			} else {
-				$this->Flash->error(__('The user could not be saved. Please, try again.'));
-			}
-		} else {
-			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
-			$this->request->data = $this->User->find('first', $options);
-		}
-	}
-
-	public function delete($id = null) {
-		$this->User->id = $id;
-		if (!$this->User->exists()) {
-			throw new NotFoundException(__('Invalid user'));
-		}
-		$this->request->allowMethod('post', 'delete');
-		if ($this->User->delete()) {
-			$this->Flash->success(__('The user has been deleted.'));
-		} else {
-			$this->Flash->error(__('The user could not be deleted. Please, try again.'));
-		}
-		return $this->redirect(array('action' => 'index'));
 	}
 
 	public function login() {
@@ -92,7 +32,84 @@ class UsersController extends AppController {
 		$this->redirect($logoutUrl);
 	}
 
+
+	// 管理者専用ページ
+
+	public function index() {
+		if($this->Auth->user('id') != 1){
+			return $this->redirect(array('action' => 'top'));
+		}
+		$this->User->recursive = 0;
+		$this->set('users', $this->User->find('all'));
+	}
+
+	public function view($id = null) {
+		if($this->Auth->user('id') != 1){
+			return $this->redirect(array('action' => 'top'));
+		}
+		if (!$this->User->exists($id)) {
+			throw new NotFoundException(__('Invalid user'));
+		}
+		$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
+		$this->set('user', $this->User->find('first', $options));
+	}
+
+	public function add() {
+		if($this->Auth->user('id') != 1){
+			return $this->redirect(array('action' => 'top'));
+		}
+		if ($this->request->is('post')) {
+			$this->User->create();
+			if ($this->User->save($this->request->data)) {
+				$this->Flash->success(__('正常に登録されました．'));
+				return $this->redirect(array('action' => 'index'));
+			} else {
+				$this->Flash->error(__('ユーザ登録ができませんでした．やり直してみてください．'));
+			}
+		}
+	}
+
+	public function edit($id = null) {
+		if($this->Auth->user('id') != 1){
+			return $this->redirect(array('action' => 'top'));
+		}
+		if (!$this->User->exists($id)) {
+			throw new NotFoundException(__('Invalid user'));
+		}
+		if ($this->request->is(array('post', 'put'))) {
+			if ($this->User->save($this->request->data)) {
+				$this->Flash->success(__('The user has been saved.'));
+				return $this->redirect(array('action' => 'index'));
+			} else {
+				$this->Flash->error(__('The user could not be saved. Please, try again.'));
+			}
+		} else {
+			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
+			$this->request->data = $this->User->find('first', $options);
+		}
+	}
+
+	public function delete($id = null) {
+		if($this->Auth->user('id') != 1){
+			return $this->redirect(array('action' => 'top'));
+		}
+		$this->User->id = $id;
+		if (!$this->User->exists()) {
+			throw new NotFoundException(__('Invalid user'));
+		}
+		$this->request->allowMethod('post', 'delete');
+		if ($this->User->delete()) {
+			$this->Flash->success(__('The user has been deleted.'));
+		} else {
+			$this->Flash->error(__('The user could not be deleted. Please, try again.'));
+		}
+		return $this->redirect(array('action' => 'index'));
+	}
+
 	public function assignTeam(){
+		if($this->Auth->user('id') != 1){
+			return $this->redirect(array('action' => 'top'));
+		}
 		$this->autoRender = false;
 		$sort_users = $this->User->find('all',array(
 			'order' => array('User.points' => 'DESC'),
@@ -104,6 +121,9 @@ class UsersController extends AppController {
 	}
 
 	public function showTeamMembers(){
+		if($this->Auth->user('id') != 1){
+			return $this->redirect(array('action' => 'top'));
+		}
 		$a_team = $this->User->find('all',array(
 			'conditions' => array('User.team' => 'A'),
 			'order' => array('User.points' => 'DESC'),
