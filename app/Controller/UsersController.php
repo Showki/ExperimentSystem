@@ -22,12 +22,21 @@ class UsersController extends AppController {
 	        if($this->Auth->login()) {
 	            $this->redirect($this->Auth->redirect());
 	        }else{
-	            $this->Session->setFlash(__('IDまたはパスワードが違います'));
+				$this->Session->setFlash(__(
+					'ログイン失敗しました．IDかパスワードが間違っています．'), 'alert', array(
+						'plugin' => 'BoostCake',
+						'class' => 'alert-danger'
+				));
 	        }
 	    }
 	}
 
 	public function logout(){
+		$this->Session->setFlash(__(
+			'ログアウトしました．お疲れ様でした．'), 'alert', array(
+				'plugin' => 'BoostCake',
+				'class' => 'alert-success'
+		));
 		$logoutUrl = $this->Auth->logout();
 		$this->redirect($logoutUrl);
 	}
