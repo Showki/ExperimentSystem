@@ -82,3 +82,9 @@
 .top_info_box {
     text-align: center;
 }
+
+.login_box {
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+}
