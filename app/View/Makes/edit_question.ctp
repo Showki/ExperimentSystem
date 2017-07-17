@@ -1,12 +1,12 @@
 <div class="text-center">
 
-    <?php echo $this->Form->create('makes',array(
+    <?php echo $this->Form->create('MadeProblem',array(
         'type'  => 'post',
         'url'   => 'storeQuestion',
         'onsubmit' => 'return confirm("以下の内容で登録してもよろしいですか？");'
     ));?>
 
-    <?php echo $this->Form->input('Edit.sentence', array(
+    <?php echo $this->Form->input('sentence', array(
         'label' => array(
             'text'  =>  '問題文',
             'class' =>  'col-xs-12 textarea_label',
@@ -19,7 +19,7 @@
         'value' => $question['GeneratedQuestion']['sentence'],
     )); ?>
 
-    <?php echo $this->Form->input('Edit.answer', array(  
+    <?php echo $this->Form->input('answer', array(  
         'label' => array('text'  =>  '正答','class' =>  'col-xs-12 textarea_label',),
         'div'   => array('class' =>  'col-xs-5 text-center form-group'),
         'class' => 'form-control',
@@ -28,21 +28,21 @@
     )); ?>
 
     <div class="form-group">
-        <?php echo $this->Form->input('Edit.wrong_answer_1', array(
+        <?php echo $this->Form->input('wrong_answer_1', array(
             'label' => array('text'  =>  '誤答１','class' =>  'col-xs-12 textarea_label',),
             'div'   => array('class' =>  'col-xs-4 text-center form-group'),
             'class' => 'form-control',
             'type'  => 'textarea',
             'placeholder'   => '誤答選択肢１を入力してください…',
         )); ?>
-        <?php echo $this->Form->input('Edit.wrong_answer_2', array(
+        <?php echo $this->Form->input('wrong_answer_2', array(
             'label' => array('text'  =>  '誤答２','class' =>  'col-xs-12 textarea_label',),
             'div'   => array('class' =>  'col-xs-4 text-center form-group'),
             'class' => 'form-control',
             'type'  => 'textarea',
             'placeholder'   => '誤答選択肢２を入力してください…',
         )); ?>
-        <?php echo $this->Form->input('Edit.wrong_answer_3', array(
+        <?php echo $this->Form->input('wrong_answer_3', array(
             'label' => array('text'  =>  '誤答３','class' =>  'col-xs-12 textarea_label',),
             'div'   => array('class' =>  'col-xs-4 text-center form-group'),
             'class' => 'form-control',
@@ -51,7 +51,7 @@
         )); ?>
     </div>
 
-    <?php echo $this->Form->input('Edit.reference', array(
+    <?php echo $this->Form->input('reference', array(
         'label' => array(
             'text'  =>  '参考文献',
             'class' =>  'col-xs-12 textarea_label'),
@@ -62,7 +62,7 @@
         'placeholder' => '参考文献があれば，URLを入力してください',
     )); ?>
 
-    <?php echo $this->Form->hidden('Edit.generated_questions_id',array(
+    <?php echo $this->Form->hidden('generated_questions_id',array(
         'value' => $question_id
     )); ?>
 

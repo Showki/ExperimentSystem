@@ -88,9 +88,8 @@ class MakesController extends AppController {
 	public function storeQuestion(){
 		if ($this->request->is('post')) {
 			$this->loadModel('MadeProblem');
-			$store_question['MadeProblem'] = $this->request->data['Edit'];
-			$store_question['MadeProblem']['user_id'] = $this->Auth->user('id');
-			if($this->MadeProblem->save($store_question)){
+			$this->request->data['MadeProblem']['user_id'] = $this->Auth->user('id');
+			if($this->MadeProblem->save($this->request->data)){
 				$this->Session->setFlash(__(
 					'登録完了しました．'), 'alert', array(
 						'plugin' => 'BoostCake',
