@@ -37,10 +37,8 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('New User'), array('action' => 'add')); ?></li>
+		<li><?php echo $this->Html->link(__('新規追加'), array('action' => 'add')); ?></li>
 		<li><?php echo $this->Html->link(__('チームを振り分け直す'), array('action' => 'assignTeam')); ?></li>
-		<li><?php echo $this->Html->link(__('テストユーザの生成'), array('action' => 'addTestUsers')); ?></li>
-		<li><?php echo $this->Html->link(__('テストユーザの削除'), array('action' => 'deleteTestUsers')); ?></li>
 	</ul>
 </div>
 
@@ -76,9 +74,7 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('New User'), array('action' => 'add')); ?></li>
+		<li><?php echo $this->Html->link(__('新規追加'), array('action' => 'add')); ?></li>
 		<li><?php echo $this->Html->link(__('チームを振り分け直す'), array('action' => 'assignTeam')); ?></li>
-		<li><?php echo $this->Html->link(__('テストユーザの生成'), array('action' => 'addTestUsers')); ?></li>
-		<li><?php echo $this->Html->link(__('テストユーザの削除'), array('action' => 'deleteTestUsers')); ?></li>
 	</ul>
 </div>

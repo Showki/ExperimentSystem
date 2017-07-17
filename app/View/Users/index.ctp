@@ -36,10 +36,8 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('New User'), array('action' => 'add')); ?></li>
+		<li><?php echo $this->Html->link(__('新規追加'), array('action' => 'add')); ?></li>
 		<li><?php echo $this->Html->link(__('チームの振り分け'), array('action' => 'assignTeam')); ?></li>
 		<li><?php echo $this->Html->link(__('振り分け結果一覧'), array('action' => 'showTeamMembers')); ?></li>
-		<li><?php echo $this->Html->link(__('テストユーザの生成'), array('action' => 'addTestUsers')); ?></li>
-		<li><?php echo $this->Html->link(__('テストユーザの削除'), array('action' => 'deleteTestUsers')); ?></li>
 	</ul>
 </div>
