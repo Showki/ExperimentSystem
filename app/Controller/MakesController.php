@@ -24,7 +24,11 @@ class MakesController extends AppController {
 		// $this->storeActivity("問題作成機能｜キーワード入力による検索->入力：".$word."｜");
 		
 		if(!isset($keywords)){
-			$this->Session->setFlash(__('検索結果が 0件であったため、検索画面に戻ります'));
+			$this->Session->setFlash(__(
+				'検索結果が 0件であったため、検索画面に戻ります'), 'alert', array(
+					'plugin' => 'BoostCake',
+					'class' => 'alert-danger'
+			));
 			$this->redirect(array('controller'=>'makes','action'=>'inputWord'));
 		}else{
 			// $this->storeActivity("問題作成機能｜キーワード一覧｜");
