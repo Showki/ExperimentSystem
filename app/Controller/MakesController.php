@@ -68,14 +68,14 @@ class MakesController extends AppController {
 
 	public function showQuestions($tk_word){
 		if(empty($tk_word))
-			return $this->redirect(array('action' => 'selectMode'));
+			return $this->redirect(array('action' => 'inputWord'));
 
-		$tk_id 					= $this->TargetKnowledge->fetchId($tk_word);
+		$tk_id = $this->TargetKnowledge->fetchId($tk_word);
 		// テンプレートで絞込している箇所
-		$generated_questions 	= $this->GeneratedQuestion->fetchQuestions($tk_id);
+		$generated_questions = $this->GeneratedQuestion->fetchQuestions($tk_id);
 		
-		$exam_id_list 			= $this->Knowledge->fetchExamId($tk_word);
-		$exam_questions 		= $this->PastExam->fetchQuestions($exam_id_list);
+		$exam_id_list = $this->Knowledge->fetchExamId($tk_word);
+		$exam_questions = $this->PastExam->fetchQuestions($exam_id_list);
 
 		$this->set(compact('generated_questions','exam_questions','tk_word'));
 	}
