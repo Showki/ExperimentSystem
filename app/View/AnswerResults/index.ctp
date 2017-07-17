@@ -16,7 +16,15 @@
 			<td><?php echo h($answer_result['sentence']); ?></td>
 			<td><?php echo h("選択肢".$answer_result['selected_number']."：".$answer_result['selected_option']); ?></td>
 			<td class="actions">
-
+			<?php echo $this->html->link('修正',array(
+				'action' => 'edit',
+				'?' => array(
+					'times' => $key+1,
+					'id' => $answer_result['id'])),
+				array(
+                    'class' => 'btn btn-success btn-lg',
+				));
+			?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
