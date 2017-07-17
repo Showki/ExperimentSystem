@@ -126,4 +126,29 @@ class AnswerResultsController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+
+	public function sum_points(){
+		$this->autoRender = false;
+		$id = $this->Auth->user('id');
+		$points = $this->AnswerResult->find('count',array(
+			'conditions' => array(
+				'users_id' => $id,
+				'result' => 1
+			)));
+		$this->loadModel('User');
+		if($this->User->save(compact('id','points'))){
+			$this->Session->setFlash(__(
+				'採点が完了しました．指示が出るまでお待ち下さい．'), 'alert', array(
+					'plugin' => 'BoostCake',
+					'class' => 'alert-success'
+			));
+			return $this->redirect(array('controller' => 'users', 'action' => 'top'));
+		}else{
+			$this->Session->setFlash(__(
+				'採点が完了しました．指示が出るまでお待ち下さい．'), 'alert', array(
+					'plugin' => 'BoostCake',
+					'class' => 'alert-danger'
+			));
+		}
+	}
 }
