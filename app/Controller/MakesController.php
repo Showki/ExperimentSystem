@@ -146,7 +146,7 @@ class MakesController extends AppController {
 					'plugin' => 'BoostCake',
 					'class' => 'alert-danger'
 			));
-			return $this->redirect(array('action' => 'index'));
+			return $this->redirect(array('controller'=>'users','action' => 'top'));
 		}
 		$made_problems = Set::extract('/MadeProblem/.',$made_problems);
 		$this->set(compact('made_problems','make_url'));
