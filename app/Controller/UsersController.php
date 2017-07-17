@@ -10,7 +10,9 @@ App::uses('AppController', 'Controller');
  */
 class UsersController extends AppController {
 
-
+	public function beforeFilter(){
+		$this->Auth->allow();
+	}
 /**
  * Components
  *
@@ -132,23 +134,7 @@ class UsersController extends AppController {
 		$this->redirect($logoutUrl);
 	}
 
-	public function addTestUsers() {
-		$this->autoRender = false;
-		if($this->User->addTestUsers()){
-			$this->Session->setFlash(__('登録成功'));
-			return $this->redirect(array('action' => 'index'));
-		}
-	}
 
-	public function deleteTestUsers(){
-		$this->autoRender = false;
-		$conditions = array('User.name like' => '%テストユーザ%');
-		if($this->User->deleteAll($conditions,false)){
-			$this->Session->setFlash(__('削除成功'));
-			return $this->redirect(array('action' => 'index'));
-		}
-
-	}
 
 	public function assignTeam(){
 		$this->autoRender = false;
@@ -172,4 +158,27 @@ class UsersController extends AppController {
 		));
 		$this->set(compact('a_team','b_team'));
 	}
+
+	// public function addTestUsers() {
+	// 	$this->autoRender = false;
+	// 	if($this->User->addTestUsers()){
+	// 		$this->Session->setFlash(__('登録成功'));
+	// 		return $this->redirect(array('action' => 'index'));
+	// 	}
+	// }
+	// public function deleteTestUsers(){
+	// 	$this->autoRender = false;
+	// 	$conditions = array('User.name like' => '%テストユーザ%');
+	// 	if($this->User->deleteAll($conditions,false)){
+	// 		$this->Session->setFlash(__('削除成功'));
+	// 		return $this->redirect(array('action' => 'index'));
+	// 	}
+	// }
+	// public function passwordHash(){
+	// 	$this->autoRender = false;
+	// 	if($this->User->passHash()){
+	// 		$this->Session->setFlash(__('ハッシュ成功'));
+	// 		return $this->redirect(array('action' => 'index'));
+	// 	}
+	// }
 }

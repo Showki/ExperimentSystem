@@ -61,28 +61,6 @@ class User extends AppModel {
     	return true;
 	}
 
-	public function addTestUsers(){
-		for ($i=1; $i<=100 ; $i++) { 
-			$test_users['User'][$i]['password'] = "test";
-			$test_users['User'][$i]['points'] = rand(0,40);
-			switch (strlen($i)) {
-				case 1:
-					$under_num = "00".$i;
-					break;
-				case 2:
-					$under_num = "0".$i;
-					break;
-				default:
-					$under_num = $i;
-					break;
-			}
-			$test_users['User'][$i]['student_number'] = "0312017".$under_num;
-			$test_users['User'][$i]['name'] = "テストユーザ".$under_num;
-		}
-		$this->saveAll($test_users['User']);
-		return true;
-	}
-
 	public function assignTeam($users){
 		$team_num = 0;
 		foreach ($users as $key => $user) {
@@ -93,4 +71,31 @@ class User extends AppModel {
 		}
 		return $this->saveAll($assigned_user['User']);
 	}
+
+	// public function addTestUsers(){
+	// 	for ($i=1; $i<=100 ; $i++) { 
+	// 		$test_users['User'][$i]['password'] = "test";
+	// 		$test_users['User'][$i]['points'] = rand(0,40);
+	// 		switch (strlen($i)) {
+	// 			case 1:
+	// 				$under_num = "00".$i;
+	// 				break;
+	// 			case 2:
+	// 				$under_num = "0".$i;
+	// 				break;
+	// 			default:
+	// 				$under_num = $i;
+	// 				break;
+	// 		}
+	// 		$test_users['User'][$i]['student_number'] = "0312017".$under_num;
+	// 		$test_users['User'][$i]['name'] = "テストユーザ".$under_num;
+	// 	}
+	// 	$this->saveAll($test_users['User']);
+	// 	return true;
+	// }
+
+	// public function passHash(){
+	// 	$users = $this->find('all',array('fields' => array('id','password')));
+	// 	return $this->saveAll($users);
+	// }
 }
