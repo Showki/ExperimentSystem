@@ -94,3 +94,17 @@
     margin: 50px auto;
     text-align: center;
 }
+
+.themes_box {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.theme_message {
+    font-size: 20px;
+    color: red;
+}
+
+.themes {
+    font-size: 25px;
+}

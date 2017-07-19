@@ -1,4 +1,14 @@
 <!-- <h3>『<?php echo $user_name ?>』さんが作成した問題一覧</h3> -->
+
+<div class="themes_box">
+    <p class=theme_message>
+        以下のテーマに関連する問題を作成してください！
+    </p>
+    <p class="themes">
+        <?php echo "①：".$themes['theme_1']."，②：".$themes['theme_2']."，③：".$themes['theme_3']; ?>
+    </p>
+</div>
+
 <div class="operation_btn_box">
 <?php   
     echo $this->Html->link('戻る',array('controller' => 'users','action' => 'top'),array(

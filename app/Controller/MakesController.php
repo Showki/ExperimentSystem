@@ -151,8 +151,22 @@ class MakesController extends AppController {
 			));
 			return $this->redirect(array('controller'=>'users','action' => 'top'));
 		}
+		$themes = $this->User->find('first',array(
+			'conditions' => array('User.id' => $this->Auth->user('id')),
+			'fields' => array('User.theme_1','User.theme_2','User.theme_3'),
+		));
+		$themes = $themes['User'];
+		if(($themes['theme_1'] === "")&&($themes['theme_2'] === "")&&($themes['theme_3'] === "")){
+			$this->Session->setFlash(__(
+				'テーマの割振りが済んでません．もう少々お待ち下さい．'), 'alert', array(
+					'plugin' => 'BoostCake',
+					'class' => 'alert-danger'
+			));
+			return $this->redirect(array('controller'=>'users','action' => 'top'));
+		}
+
 		$made_problems = Set::extract('/MadeProblem/.',$made_problems);
-		$this->set(compact('made_problems','make_url'));
+		$this->set(compact('made_problems','make_url','themes'));
 	}
 
     public function editMadeQuestion($problem_id){
