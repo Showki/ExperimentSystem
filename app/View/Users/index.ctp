@@ -39,5 +39,7 @@
 		<li><?php echo $this->Html->link(__('新規追加'), array('action' => 'add')); ?></li>
 		<li><?php echo $this->Html->link(__('チームの振り分け'), array('action' => 'assignTeam')); ?></li>
 		<li><?php echo $this->Html->link(__('振り分け結果一覧'), array('action' => 'showTeamMembers')); ?></li>
+		<li>***テスト用メソッド***</li>
+		<li><?php echo $this->Html->link(__('点数と回答数付加'), array('action' => 'setPoints')); ?></li>
 	</ul>
 </div>

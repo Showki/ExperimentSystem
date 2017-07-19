@@ -145,4 +145,16 @@ class UsersController extends AppController {
 		));
 		$this->set(compact('a_team','b_team'));
 	}
+
+	// テスト用のメソッド
+	public function setPoints(){
+		$this->autoRender = false;
+		if($this->User->setPoints()){
+			$this->Flash->success(__('テスト用だけど点数を生成して登録．'));
+			return $this->redirect(array('action' => 'index'));
+		}else{
+			$this->Flash->error(__(
+				'点数の生成か，その登録で失敗してる．'));
+		}
+	}
 }

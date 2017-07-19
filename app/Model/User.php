@@ -71,4 +71,13 @@ class User extends AppModel {
 		}
 		return $this->saveAll($assigned_user['User']);
 	}
+
+	public function setPoints(){
+		$users = $this->find('all',array('fields' => array('id')));
+		foreach ($users as $key => &$user) {
+			$users[$key]['User']['points'] = rand(5,35);
+			$users[$key]['User']['times'] = 30;
+		}
+		return $this->saveAll($users);
+	}
 }
