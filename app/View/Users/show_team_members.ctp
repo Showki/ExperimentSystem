@@ -3,9 +3,6 @@
     $b_mem_num = count($b_team);
     $a_sum = 0;
     $b_sum = 0;
-
-	debug($a_team);
-	debug($b_team);
 ?>
 
 <div class="users index">
