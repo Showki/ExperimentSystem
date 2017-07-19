@@ -36,11 +36,49 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('① チームの振り分け'), array('action' => 'assignTeam')); ?></li>
-		<li><?php echo $this->Html->link(__('② テーマの振り分け'), array('action' => 'setTheme')); ?></li>
-		<li><?php echo $this->Html->link(__('③ 振り分け結果一覧'), array('action' => 'showTeamMembers')); ?></li>
+		<li>
+			<?php
+				echo $this->Html->link(__('① チームの振り分け'), array(
+					'action' => 'assignTeam'),array(
+						'title' => 'チーム振り分け'),"チームの振り分けを開始しますか？");
+			?>
+		</li>
+		<li>
+			<?php
+				echo $this->Html->link(__('② テーマの振り分け'), array(
+					'action' => 'setTheme'),array(
+						'title' => 'テーマ振り分け'),"テーマの振り分けを開始しますか？");
+			?>
+		</li>
+		<li>
+			<?php
+				echo $this->Html->link(__('③ チームごとに閲覧'), array(
+					'action' => 'showTeamMembers'));
+			?>
+		</li>
 		<li>***テスト用メソッド（本番消す）***</li>
-		<li><?php echo $this->Html->link(__('点数と回答数付加'), array('action' => 'setPoints')); ?></li>
+		<li>
+			<?php
+				echo $this->Html->link(__('チームの初期化'), array(
+					'action' => 'clearTeam'),array(
+						'title' => 'チーム初期化'),"チームを初期化します．");
+			?>
+		</li>
+		<li>
+			<?php
+				echo $this->Html->link(__('テーマの初期化'), array(
+					'action' => 'clearTheme'),array(
+						'title' => 'テーマ初期化'),'テーマを初期化します．');
+			?>
+		</li>
+		<li>点数計算が機能しないとき</li>
+		<li>
+			<?php
+				echo $this->Html->link(__('点数・回答数の付加'), array(
+					'action' => 'setPoints'),array(
+						'title' => '点数・回答数の付加'),"点数と回答数を付加して良いですか？解答が進行中だと上書きされてしまいます．");
+			?>
+		</li>
 		<li><?php echo $this->Html->link(__('新規追加'), array('action' => 'add')); ?></li>
 	</ul>
 </div>
