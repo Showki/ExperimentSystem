@@ -36,10 +36,11 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('新規追加'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('チームの振り分け'), array('action' => 'assignTeam')); ?></li>
-		<li><?php echo $this->Html->link(__('振り分け結果一覧'), array('action' => 'showTeamMembers')); ?></li>
-		<li>***テスト用メソッド***</li>
+		<li><?php echo $this->Html->link(__('① チームの振り分け'), array('action' => 'assignTeam')); ?></li>
+		<li><?php echo $this->Html->link(__('② テーマの振り分け'), array('action' => 'setTheme')); ?></li>
+		<li><?php echo $this->Html->link(__('③ 振り分け結果一覧'), array('action' => 'showTeamMembers')); ?></li>
+		<li>***テスト用メソッド（本番消す）***</li>
 		<li><?php echo $this->Html->link(__('点数と回答数付加'), array('action' => 'setPoints')); ?></li>
+		<li><?php echo $this->Html->link(__('新規追加'), array('action' => 'add')); ?></li>
 	</ul>
 </div>
