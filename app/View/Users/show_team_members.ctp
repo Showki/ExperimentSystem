@@ -3,6 +3,9 @@
     $b_mem_num = count($b_team);
     $a_sum = 0;
     $b_sum = 0;
+
+	debug($a_team);
+	debug($b_team);
 ?>
 
 <div class="users index">
@@ -13,6 +16,9 @@
         <th>学籍番号</th>
         <th>名前</th>
         <th>得点</th>
+        <th>テーマ①</th>
+        <th>テーマ②</th>
+        <th>テーマ③</th>
 	</tr>
 	</thead>
 	<tbody>
@@ -21,6 +27,9 @@
 		<td><?php echo h($a_member['User']['student_number']); ?>&nbsp;</td>
 		<td><?php echo h($a_member['User']['name']); ?>&nbsp;</td>
 		<td><?php echo h($a_member['User']['points']); ?>&nbsp;</td>
+		<td><?php echo h($a_member['User']['theme_1']); ?>&nbsp;</td>
+		<td><?php echo h($a_member['User']['theme_2']); ?>&nbsp;</td>
+		<td><?php echo h($a_member['User']['theme_3']); ?>&nbsp;</td>
         <?php $a_sum += $a_member['User']['points']; ?>
 	</tr>
     <?php endforeach; ?>
@@ -50,6 +59,9 @@
         <th>学籍番号</th>
         <th>名前</th>
         <th>得点</th>
+        <th>テーマ①</th>
+        <th>テーマ②</th>
+        <th>テーマ③</th>
 	</tr>
 	</thead>
 	<tbody>
@@ -58,6 +70,9 @@
 		<td><?php echo h($b_member['User']['student_number']); ?>&nbsp;</td>
 		<td><?php echo h($b_member['User']['name']); ?>&nbsp;</td>
 		<td><?php echo h($b_member['User']['points']); ?>&nbsp;</td>
+		<td><?php echo h($a_member['User']['theme_1']); ?>&nbsp;</td>
+		<td><?php echo h($a_member['User']['theme_2']); ?>&nbsp;</td>
+		<td><?php echo h($a_member['User']['theme_3']); ?>&nbsp;</td>
         <?php $b_sum += $b_member['User']['points']; ?>
 
 	</tr>
