@@ -9,6 +9,7 @@
 			<th>解答数</th>
 			<th>点数</th>
 			<th>チーム</th>
+			<th>テーマ</th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	</thead>
@@ -21,6 +22,7 @@
 		<td><?php echo h($user['User']['times']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['points']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['team']); ?>&nbsp;</td>
+		<td><?php echo h($user['User']['theme_1']."，".$user['User']['theme_2']."，".$user['User']['theme_3']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $user['User']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $user['User']['id'])); ?>
