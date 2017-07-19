@@ -124,8 +124,10 @@ class UsersController extends AppController {
 			'order' => array('User.points' => 'DESC'),
 		));
 		if($this->User->assignTeam($sort_users)){
-			$this->Session->setFlash(__('更新成功'));
+			$this->Flash->success(__('チーム割振り成功．'));
 			return $this->redirect(array('action' => 'index'));
+		}else{
+			$this->Flash->error(__('チーム割振り失敗．'));
 		}
 	}
 
