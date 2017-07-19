@@ -70,9 +70,9 @@
 		<td><?php echo h($b_member['User']['student_number']); ?>&nbsp;</td>
 		<td><?php echo h($b_member['User']['name']); ?>&nbsp;</td>
 		<td><?php echo h($b_member['User']['points']); ?>&nbsp;</td>
-		<td><?php echo h($a_member['User']['theme_1']); ?>&nbsp;</td>
-		<td><?php echo h($a_member['User']['theme_2']); ?>&nbsp;</td>
-		<td><?php echo h($a_member['User']['theme_3']); ?>&nbsp;</td>
+		<td><?php echo h($b_member['User']['theme_1']); ?>&nbsp;</td>
+		<td><?php echo h($b_member['User']['theme_2']); ?>&nbsp;</td>
+		<td><?php echo h($b_member['User']['theme_3']); ?>&nbsp;</td>
         <?php $b_sum += $b_member['User']['points']; ?>
 
 	</tr>
