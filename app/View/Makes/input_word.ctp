@@ -1,3 +1,12 @@
+<div class="themes_box">
+    <p class=theme_message>
+        以下のテーマを入力し，検索してください！
+    </p>
+    <p class="themes">
+        <?php echo "①：".$themes['theme_1']."，②：".$themes['theme_2']."，③：".$themes['theme_3']; ?>
+    </p>
+</div>
+
 <div class="text-center">
 <html>
 <?php echo $this->Session->flash(); ?>

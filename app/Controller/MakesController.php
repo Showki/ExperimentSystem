@@ -13,6 +13,13 @@ class MakesController extends AppController {
 	}
 
 	public function inputWord(){
+		$this->loadModel('User');
+		$themes = $this->User->find('first',array(
+			'conditions' => array('User.id' => $this->Auth->user('id')),
+			'fields' => array('User.theme_1','User.theme_2','User.theme_3'),
+		));
+		$themes = $themes['User'];
+		$this->set(compact('themes'));
 	}
 
 	public function showKeywords(){
@@ -204,7 +211,7 @@ class MakesController extends AppController {
 		));
 		$themes = $themes['User'];
 
-		$this->set(compact('problem','problem_id','themes'));		
+		$this->set(compact('problem','problem_id','themes'));
 	}
 
     public function deleteMadeQuestion($question_id=null){
