@@ -14,7 +14,8 @@
         'type'=>'select', 
         'div'=>false, 
         'label'=>false, 
-        'options'=> $grade, 'empty'=>'級を選択してください')); 
+        'options'=> $grade, 'empty'=>'級を選択してください',
+        'selected' => 3)); 
 ?>
 &nbsp 
 <?php echo $this->Form->submit('確定',array(

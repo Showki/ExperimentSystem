@@ -25,13 +25,15 @@ class PastProblemsController extends AppController {
 	public function index() {
 		$this->layout = 'experiment';
         $year = array(
+            "2009" => "H21",
+            "2010" => "H22",
+            "2011" => "H23",
             "2012" => "H24",
             "2013" => "H25",
             "2014" => "H26",
         );
         $grade = array(
             "3" => "3級",
-            "2" => "2級",
         );
 		$this->loadModel('PastExam');
 
