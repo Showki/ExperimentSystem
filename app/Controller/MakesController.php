@@ -196,7 +196,15 @@ class MakesController extends AppController {
 			}
 		}
 		$problem = $this->MadeProblem->findById($problem_id);
-		$this->set(compact('problem','problem_id'));		
+
+		$this->loadModel('User');
+		$themes = $this->User->find('first',array(
+			'conditions' => array('User.id' => $this->Auth->user('id')),
+			'fields' => array('User.theme_1','User.theme_2','User.theme_3'),
+		));
+		$themes = $themes['User'];
+
+		$this->set(compact('problem','problem_id','themes'));		
 	}
 
     public function deleteMadeQuestion($question_id=null){
