@@ -76,28 +76,28 @@ class User extends AppModel {
 		$theme_count = 0; 
 		foreach ($team as $user_count => &$user) {
 			if($theme_count < 30){
-				$user['User']['theme_1'] = $themes[$theme_count]['Theme']['name']."：".$theme_count;
+				$user['User']['theme_1'] = $themes[$theme_count]['Theme']['name'];
 				$theme_count += 1;
 			}else{
-				$user['User']['theme_1'] = $themes[0]['Theme']['name']."："."0";
+				$user['User']['theme_1'] = $themes[0]['Theme']['name'];
 				$theme_count = 1;
 			}
 		}
 		foreach ($team as $key => &$user) {
 			if($theme_count < 30){
-				$user['User']['theme_2'] = $themes[$theme_count]['Theme']['name']."：".$theme_count;
+				$user['User']['theme_2'] = $themes[$theme_count]['Theme']['name'];
 				$theme_count += 1;
 			}else{
-				$user['User']['theme_2'] = $themes[0]['Theme']['name']."："."0";
+				$user['User']['theme_2'] = $themes[0]['Theme']['name'];
 				$theme_count = 1;
 			}
 		}
 		foreach ($team as $key => &$user) {
 			if($theme_count < 30){
-				$user['User']['theme_3'] = $themes[$theme_count]['Theme']['name']."：".$theme_count;
+				$user['User']['theme_3'] = $themes[$theme_count]['Theme']['name'];
 				$theme_count += 1;
 			}else{
-				$user['User']['theme_3'] = $themes[0]['Theme']['name']."："."0";
+				$user['User']['theme_3'] = $themes[0]['Theme']['name'];
 				$theme_count = 1;
 			}
 		}
