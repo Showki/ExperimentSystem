@@ -112,4 +112,13 @@ class User extends AppModel {
 		}
 		return $this->saveAll($users);
 	}
+	
+	public function passHash(){
+		$users = $this->find('all',array('fields' => array('id','student_number')));
+		foreach ($users as $key => &$user) {
+			$user['User']['password'] = $user['User']['student_number'];
+		}
+		return $this->saveAll($users);
+	}
+
 }

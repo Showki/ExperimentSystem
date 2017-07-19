@@ -2,6 +2,10 @@
 App::uses('AppController', 'Controller');
 
 class UsersController extends AppController {
+	function beforeFilter(){
+		$this->Auth->allow('passwordHash');
+	}
+
 
 	public $components = array('Session', 'Flash');
 
@@ -161,6 +165,7 @@ class UsersController extends AppController {
 				'User.team' => 'A',
 				'User.times >' => 0,
 				),
+			'fields' => array('id'),
 			'order' => array('User.points' => 'DESC'),
 		));
 		$this->User->setTheme($a_team,$themes);
@@ -170,6 +175,7 @@ class UsersController extends AppController {
 				'User.team' => 'B',
 				'User.times >' => 0,
 				),
+			'fields' => array('id'),
 			'order' => array('User.points' => 'DESC'),
 		));
 		$this->User->setTheme($b_team,$themes);
@@ -187,4 +193,14 @@ class UsersController extends AppController {
 				'点数の生成か，その登録で失敗してる．'));
 		}
 	}
+
+	// 何らかのメソッドでパスワードが再ハッシュされてしまった時、初期化してハッシュする
+	public function passwordHash(){
+		$this->autoRender = false;
+		if($this->User->passHash()){
+			$this->Flash->success(__('ハッシュ成功'));
+			return $this->redirect(array('action' => 'index'));
+		}
+	}
+
 }
