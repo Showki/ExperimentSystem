@@ -196,9 +196,34 @@ class UsersController extends AppController {
 
 	// 何らかのメソッドでパスワードが再ハッシュされてしまった時、初期化してハッシュする
 	public function passwordHash(){
+		if($this->Auth->user('id') != 1){
+			return $this->redirect(array('action' => 'top'));
+		}
 		$this->autoRender = false;
 		if($this->User->passHash()){
 			$this->Flash->success(__('ハッシュ成功'));
+			return $this->redirect(array('action' => 'index'));
+		}
+	}
+
+	public function clearTheme(){
+		$this->autoRender = false;
+		if($this->Auth->user('id') != 1){
+			return $this->redirect(array('action' => 'top'));
+		}
+		if($this->User->clearTheme()){
+			$this->Flash->success(__('クリア成功'));
+			return $this->redirect(array('action' => 'index'));
+		}
+	}
+
+	public function clearTeam(){
+		$this->autoRender = false;
+		if($this->Auth->user('id') != 1){
+			return $this->redirect(array('action' => 'top'));
+		}
+		if($this->User->clearTeam()){
+			$this->Flash->success(__('クリア成功'));
 			return $this->redirect(array('action' => 'index'));
 		}
 	}

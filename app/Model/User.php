@@ -121,4 +121,21 @@ class User extends AppModel {
 		return $this->saveAll($users);
 	}
 
+	public function clearTheme(){
+		$users = $this->find('all',array('fields' => array('id')));
+		foreach ($users as $key => &$user) {
+			$user['User']['theme_1'] = '';
+			$user['User']['theme_2'] = '';
+			$user['User']['theme_3'] = '';
+		}
+		return $this->saveAll($users);
+	}
+
+	public function clearTeam(){
+		$users = $this->find('all',array('fields' => array('id')));
+		foreach ($users as $key => &$user) {
+			$user['User']['team'] = '';
+		}
+		return $this->saveAll($users);
+	}
 }
