@@ -72,10 +72,42 @@ class User extends AppModel {
 		return $this->saveAll($assigned_user['User']);
 	}
 
+	public function setTheme($team,$themes){
+		$theme_count = 0; 
+		foreach ($team as $user_count => &$user) {
+			if($theme_count < 30){
+				$user['User']['theme_1'] = $themes[$theme_count]['Theme']['name']."：".$theme_count;
+				$theme_count += 1;
+			}else{
+				$user['User']['theme_1'] = $themes[0]['Theme']['name']."："."0";
+				$theme_count = 1;
+			}
+		}
+		foreach ($team as $key => &$user) {
+			if($theme_count < 30){
+				$user['User']['theme_2'] = $themes[$theme_count]['Theme']['name']."：".$theme_count;
+				$theme_count += 1;
+			}else{
+				$user['User']['theme_2'] = $themes[0]['Theme']['name']."："."0";
+				$theme_count = 1;
+			}
+		}
+		foreach ($team as $key => &$user) {
+			if($theme_count < 30){
+				$user['User']['theme_3'] = $themes[$theme_count]['Theme']['name']."：".$theme_count;
+				$theme_count += 1;
+			}else{
+				$user['User']['theme_3'] = $themes[0]['Theme']['name']."："."0";
+				$theme_count = 1;
+			}
+		}
+		return $this->saveAll($team);
+	}
+
 	public function setPoints(){
 		$users = $this->find('all',array('fields' => array('id')));
 		foreach ($users as $key => &$user) {
-			$users[$key]['User']['points'] = rand(5,35);
+			$users[$key]['User']['points'] = rand(5,25);
 			$users[$key]['User']['times'] = 30;
 		}
 		return $this->saveAll($users);

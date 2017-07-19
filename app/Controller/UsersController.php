@@ -146,6 +146,36 @@ class UsersController extends AppController {
 		$this->set(compact('a_team','b_team'));
 	}
 
+
+	public function setTheme(){
+		$this->autoRender = false;
+		if($this->Auth->user('id') != 1){
+			return $this->redirect(array('action' => 'top'));
+		}
+		$this->loadModel('Theme');
+		$themes = $this->Theme->find('all',array('fields' => array('name')));
+		// 回答数0の学生は除外してテーマを割り振る
+		// Aチーム振り分け
+		$a_team = $this->User->find('all',array(
+			'conditions' => array(
+				'User.team' => 'A',
+				'User.times >' => 0,
+				),
+			'order' => array('User.points' => 'DESC'),
+		));
+		$this->User->setTheme($a_team,$themes);
+		// Bチーム振り分け
+		$b_team = $this->User->find('all',array(
+			'conditions' => array(
+				'User.team' => 'B',
+				'User.times >' => 0,
+				),
+			'order' => array('User.points' => 'DESC'),
+		));
+		$this->User->setTheme($b_team,$themes);
+		return $this->redirect(array('action' => 'index'));
+	}
+
 	// テスト用のメソッド
 	public function setPoints(){
 		$this->autoRender = false;
