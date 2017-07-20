@@ -73,32 +73,23 @@ class User extends AppModel {
 	}
 
 	public function setTheme($team,$themes){
-		$theme_count = 0; 
+		$theme_count = 0;
 		foreach ($team as $user_count => &$user) {
 			if($theme_count < 30){
 				$user['User']['theme_1'] = $themes[$theme_count]['Theme']['name'];
 				$theme_count += 1;
-			}else{
-				$user['User']['theme_1'] = $themes[0]['Theme']['name'];
-				$theme_count = 1;
-			}
-		}
-		foreach ($team as $key => &$user) {
-			if($theme_count < 30){
 				$user['User']['theme_2'] = $themes[$theme_count]['Theme']['name'];
 				$theme_count += 1;
-			}else{
-				$user['User']['theme_2'] = $themes[0]['Theme']['name'];
-				$theme_count = 1;
-			}
-		}
-		foreach ($team as $key => &$user) {
-			if($theme_count < 30){
 				$user['User']['theme_3'] = $themes[$theme_count]['Theme']['name'];
 				$theme_count += 1;
 			}else{
-				$user['User']['theme_3'] = $themes[0]['Theme']['name'];
-				$theme_count = 1;
+				$theme_count = 0;
+				$user['User']['theme_1'] = $themes[$theme_count]['Theme']['name'];
+				$theme_count += 1;
+				$user['User']['theme_2'] = $themes[$theme_count]['Theme']['name'];
+				$theme_count += 1;
+				$user['User']['theme_3'] = $themes[$theme_count]['Theme']['name'];
+				$theme_count += 1;
 			}
 		}
 		return $this->saveAll($team);
