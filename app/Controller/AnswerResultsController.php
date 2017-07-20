@@ -76,8 +76,21 @@ class AnswerResultsController extends AppController {
  */
 	public function edit($times = null,$id = null) {
 		if ($this->request->is(array('post', 'put'))) {
-			debug($this->request->data);
-			if ($this->AnswerResult->save($this->request->data)) {				
+			$this->loadModel('PastProblem');
+			$answer_result_id = $this->request->data['AnswerResult']['id'];
+			$answer_result_tmp = $this->AnswerResult->find('first',array('conditions' => array(
+				'AnswerResult.id' => $answer_result_id,
+			)));
+			$select_number = $this->request->data['AnswerResult']['select_number'];
+			$correct_number = $answer_result_tmp['PastProblems']['correct_number'];
+
+			if($select_number == $correct_number){
+				$this->request->data['AnswerResult']['result'] = 1;
+			}else{
+				$this->request->data['AnswerResult']['result'] = 0;
+			}
+			
+			if ($this->AnswerResult->save($this->request->data)) {
 				$this->Session->setFlash(__('正常に保存されました．'),'alert',array(
 					'plugin' => 'BoostCake','class' => 'alert-success'
 				));
