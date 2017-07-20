@@ -1,4 +1,4 @@
-<?php $time_num = (string)$times + 1; ?>
+<?php $time_num = (string)$times; ?>
 <legend><?php echo __("第".$time_num."問"); ?></legend>
 <div class="sentence_box">
 	<?php echo __($problem['PastProblem']['sentence']) ?>
