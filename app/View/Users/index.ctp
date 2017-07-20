@@ -73,6 +73,14 @@
 						'title' => 'テーマ初期化'),'テーマを初期化します．');
 			?>
 		</li>
+		<li>
+			<?php
+				echo $this->Html->link(__('点数と回答数の初期化'), array(
+					'action' => 'clearPoint'),array(
+						'title' => '点数と回答数の初期化'),'点数と回答数を初期化します．');
+			?>
+		</li>
+
 		<li>点数計算が機能しないとき</li>
 		<li>
 			<?php

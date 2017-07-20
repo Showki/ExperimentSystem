@@ -138,4 +138,13 @@ class User extends AppModel {
 		}
 		return $this->saveAll($users);
 	}
+
+	public function clearPoint(){
+		$users = $this->find('all',array('fields' => array('id')));
+		foreach ($users as $key => &$user) {
+			$user['User']['points'] = '';
+			$user['User']['times'] = '';
+		}
+		return $this->saveAll($users);
+	}
 }

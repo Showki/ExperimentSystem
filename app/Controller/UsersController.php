@@ -228,4 +228,15 @@ class UsersController extends AppController {
 		}
 	}
 
+	public function clearPoint(){
+		$this->autoRender = false;
+		if($this->Auth->user('id') != 1){
+			return $this->redirect(array('action' => 'top'));
+		}
+		if($this->User->clearPoint()){
+			$this->Flash->success(__('クリア成功'));
+			return $this->redirect(array('action' => 'index'));
+		}
+	}
+
 }
