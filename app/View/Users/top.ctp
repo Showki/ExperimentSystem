@@ -22,7 +22,11 @@
         )); 
 ?>
 <?php 
-    echo $this->Html->link('③アンケート',array('controller' => 'histories','action' => 'showPastExam',),array('class' => 'btn btn-default btn-lg top_btn',)); 
+    echo $this->Html->link(
+        '③アンケート','https://docs.google.com/forms/d/e/1FAIpQLSeE_8HXXSa_ShKszAvLLj6aQgXcnFNget1oTKD8FbnsJZzJCg/viewform',array(
+            'class' => 'btn btn-default btn-lg top_btn',
+            'target' => '_blank' 
+        ));
 ?>
 <br/>
 <?php 

@@ -50,7 +50,7 @@
 			<li><?php echo $this->Html->link('問題作成/履歴',array('controller' => 'makes','action' => 'showMadeQuestions'));?></li>
 			<li><?php echo $this->Html->link('過去問題',array('controller' => 'past_problems','action' => 'index'),array('target' => '_blank' ));?></li>
 			<li><?php echo $this->Html->link(
-				'アンケート','https://fksktest',array(
+				'アンケート','https://docs.google.com/forms/d/e/1FAIpQLSeE_8HXXSa_ShKszAvLLj6aQgXcnFNget1oTKD8FbnsJZzJCg/viewform',array(
 					'target' => '_blank' ));?>
 			</li>
             <li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
