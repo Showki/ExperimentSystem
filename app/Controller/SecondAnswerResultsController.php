@@ -54,12 +54,12 @@ class SecondAnswerResultsController extends AppController {
 		if ($this->request->is(array('post', 'put'))) {
 			$this->loadModel('SecondMadeProblem');
 			$second_answer_result_id = $this->request->data['SecondAnswerResult']['id'];
-			$second_answer_result_tmp = $this->SecondMadeProblem->find('first',array('conditions' => array(
-				'id' => $second_answer_result_id,
+			$second_answer_result_tmp = $this->SecondAnswerResult->find(
+				'first',array('conditions' => array(
+					'SecondAnswerResult.id' => $second_answer_result_id,
 			)));
 			$select_number = $this->request->data['SecondAnswerResult']['select_number'];
-			$correct_number = $second_answer_result_tmp['SecondMadeProblem']['correct_number'];
-
+			$correct_number = $second_answer_result_tmp['SecondMadeProblems']['correct_number'];
 			if($select_number == $correct_number){
 				$this->request->data['SecondAnswerResult']['result'] = 1;
 			}else{
