@@ -1,22 +1,29 @@
-<div class="secondAnswerResults form">
-<?php echo $this->Form->create('SecondAnswerResult'); ?>
-	<fieldset>
-		<legend><?php echo __('Edit Second Answer Result'); ?></legend>
-	<?php
-		echo $this->Form->input('id');
-		echo $this->Form->input('users_id');
-		echo $this->Form->input('problems_id');
-		echo $this->Form->input('select_number');
-		echo $this->Form->input('result');
-	?>
-	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
+<?php $time_num = (string)$times; ?>
+<legend><?php echo __("第".$time_num."問"); ?></legend>
+<div class="sentence_box">
+	<?php echo __($problem['SecondMadeProblem']['sentence']) ?>
 </div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
 
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('SecondAnswerResult.id')), array('confirm' => __('Are you sure you want to delete # %s?', $this->Form->value('SecondAnswerResult.id')))); ?></li>
-		<li><?php echo $this->Html->link(__('List Second Answer Results'), array('action' => 'index')); ?></li>
-	</ul>
+<div class="option_box">
+<?php
+echo $this->Form->create('SecondAnswerResult',array(
+	'type' => 'post','url' => 'edit')
+);
+echo $this->Form->input('select_number', array(
+	'legend' => false,
+	'type' => 'radio',
+	'options' => $problem['SecondMadeProblem']['option'],
+	'before' => '<div class="radio">',
+	'after' => '</div>',
+	'separator' => '</div><div class="radio">',
+	'value' => $answer['SecondAnswerResult']['select_number'],
+));
+echo $this->Form->hidden('SecondAnswerResult.id',array('value' => $answer['SecondAnswerResult']['id']));	
+echo $this->Form->submit('決定',array(
+	'div' 	=> false,
+	'name' 	=> 'next',
+    'class' => 'btn btn-success btn-lg answer_btn',
+));
+echo $this->Form->end();
+?>
 </div>

@@ -17,14 +17,17 @@ class SecondAnswerResultsController extends AppController {
  */
 	public $components = array('Paginator', 'Session', 'Flash');
 
+    public function beforeFilter(){
+        $this->layout = 'experiment';
+    }
 /**
  * index method
  *
  * @return void
  */
 	public function index() {
-		$this->SecondAnswerResult->recursive = 0;
-		$this->set('secondAnswerResults', $this->Paginator->paginate());
+		$answer_results = $this->SecondAnswerResult->getSecondAnswerResult();
+		$this->set(compact('answer_results'));
 	}
 
 /**
@@ -49,10 +52,10 @@ class SecondAnswerResultsController extends AppController {
  */
 	public function edit($times = null,$id = null) {
 		if ($this->request->is(array('post', 'put'))) {
-			$this->loadModel('SecondAnswerResult');
-			$answer_result_id = $this->request->data['SecondAnswerResult']['id'];
-			$answer_result_tmp = $this->SecondAnswerResult->find('first',array('conditions' => array(
-				'AnswerResult.id' => $answer_result_id,
+			$this->loadModel('SecondMadeProblem');
+			$second_answer_result_id = $this->request->data['SecondAnswerResult']['id'];
+			$second_answer_result_tmp = $this->SecondMadeProblem->find('first',array('conditions' => array(
+				'id' => $second_answer_result_id,
 			)));
 			$select_number = $this->request->data['SecondAnswerResult']['select_number'];
 			$correct_number = $answer_result_tmp['SecondAnswerResults']['correct_number'];
@@ -77,12 +80,13 @@ class SecondAnswerResultsController extends AppController {
 			$answer_result_id = $this->request->query['id'];
 			$times = $this->request->query['times'];
 			$options = array('conditions' => array(
-				'AnswerResult.' . $this->SecondAnswerResult->primaryKey => $answer_result_id));
+				'SecondAnswerResult.' . $this->SecondAnswerResult->primaryKey => $answer_result_id));
 			$result = $this->SecondAnswerResult->find('first', $options);
+			// debug($result);
 
-			$this->loadModel('SecondAnswerResult');
-			$tmp['SecondAnswerResult'] = $result['SecondAnswerResults']; 
-			$problem = $this->SecondAnswerResult->toProblemFormat($tmp);
+			$this->loadModel('SecondMadeProblem');
+			$tmp['SecondMadeProblem'] = $result['SecondMadeProblems']; 
+			$problem = $this->SecondMadeProblem->toProblemFormat($tmp);
 
 			$answer['SecondAnswerResult']['select_number'] = $result['SecondAnswerResult']['select_number'];
 			$answer['SecondAnswerResult']['id'] = $result['SecondAnswerResult']['id'];
@@ -98,22 +102,22 @@ class SecondAnswerResultsController extends AppController {
  * @param string $id
  * @return void
  */
-	public function edit($id = null) {
-		if (!$this->SecondAnswerResult->exists($id)) {
-			throw new NotFoundException(__('Invalid second answer result'));
-		}
-		if ($this->request->is(array('post', 'put'))) {
-			if ($this->SecondAnswerResult->save($this->request->data)) {
-				$this->Flash->success(__('The second answer result has been saved.'));
-				return $this->redirect(array('action' => 'index'));
-			} else {
-				$this->Flash->error(__('The second answer result could not be saved. Please, try again.'));
-			}
-		} else {
-			$options = array('conditions' => array('SecondAnswerResult.' . $this->SecondAnswerResult->primaryKey => $id));
-			$this->request->data = $this->SecondAnswerResult->find('first', $options);
-		}
-	}
+	// public function edit($id = null) {
+	// 	if (!$this->SecondAnswerResult->exists($id)) {
+	// 		throw new NotFoundException(__('Invalid second answer result'));
+	// 	}
+	// 	if ($this->request->is(array('post', 'put'))) {
+	// 		if ($this->SecondAnswerResult->save($this->request->data)) {
+	// 			$this->Flash->success(__('The second answer result has been saved.'));
+	// 			return $this->redirect(array('action' => 'index'));
+	// 		} else {
+	// 			$this->Flash->error(__('The second answer result could not be saved. Please, try again.'));
+	// 		}
+	// 	} else {
+	// 		$options = array('conditions' => array('SecondAnswerResult.' . $this->SecondAnswerResult->primaryKey => $id));
+	// 		$this->request->data = $this->SecondAnswerResult->find('first', $options);
+	// 	}
+	// }
 
 /**
  * delete method
@@ -134,5 +138,30 @@ class SecondAnswerResultsController extends AppController {
 			$this->Flash->error(__('The second answer result could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
+	}
+
+	public function sum_second_points(){
+		$this->autoRender = false;
+		$id = $this->Auth->user('id');
+		$points = $this->AnswerResult->find('count',array(
+			'conditions' => array(
+				'users_id' => $id,
+				'result' => 1
+			)));
+		$this->loadModel('User');
+		if($this->User->save(compact('id','points'))){
+			$this->Session->setFlash(__(
+				'採点が完了しました．指示が出るまでお待ち下さい．'), 'alert', array(
+					'plugin' => 'BoostCake',
+					'class' => 'alert-success'
+			));
+			return $this->redirect(array('controller' => 'users', 'action' => 'top'));
+		}else{
+			$this->Session->setFlash(__(
+				'採点できませんでした．やり直してください．'), 'alert', array(
+					'plugin' => 'BoostCake',
+					'class' => 'alert-danger'
+			));
+		}
 	}
 }

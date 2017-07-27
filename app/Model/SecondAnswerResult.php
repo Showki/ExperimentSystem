@@ -54,7 +54,7 @@ class SecondAnswerResult extends AppModel {
 		),
 	);
 	public $belongsTo = array(
-		'PastProblems' => array(
+		'SecondMadeProblems' => array(
 			'className' => 'SecondMadeProblems',
 			'foreignKey' => 'second_made_problems_id',
 			'conditions' => '',
@@ -103,8 +103,8 @@ class SecondAnswerResult extends AppModel {
 
 	public function toShowFormat($result){
 		$selected_number = $result['SecondAnswerResult']['select_number'];
-		$selected_option = $result['PastProblems']["option_".$selected_number];
-		$sentence = $result['PastProblems']['sentence'];	
+		$selected_option = $result['SecondMadeProblems']["option_".$selected_number];
+		$sentence = $result['SecondMadeProblems']['sentence'];	
 		$id = $result['SecondAnswerResult']['id'];
 
 		return compact('id','sentence','selected_number','selected_option');
