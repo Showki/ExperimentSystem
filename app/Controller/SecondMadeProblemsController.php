@@ -103,4 +103,39 @@ class SecondMadeProblemsController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+
+	public function answer() {
+		$this->layout = 'experiment';
+
+		if(is_null($this->request->data('SecondMadeProblem.times'))){
+			$times = 0;
+		}else{
+			if(!empty($this->request->data['next'])){
+				$times = $this->request->data('SecondMadeProblem.times') + 1;
+			}
+			$second_answer_result = $this->request->data('SecondMadeProblem');
+			$second_answer_probelm = $this->SecondMadeProblem->findById($second_answer_result['id']);
+
+			$second_answer_probelm = $second_answer_probelm['SecondMadeProblem'];
+			$this->loadModel('SecondAnswerResult');
+			$this->SecondAnswerResult->storeSecondAnswerResult($second_answer_result,$second_answer_probelm);
+
+			// ユーザテーブルに何問目まで進んでいるのか記録する
+			$this->loadModel('User');
+			$id = $this->Auth->user('id');
+			$tmp['User'] = compact('id','times');
+			$this->User->save($tmp);
+			
+		}
+		$problems = $this->SecondMadeProblem->find('all');
+		if(!($times >= count($problems))){
+			$problem = $this->SecondMadeProblem->toProblemFormat($problems[$times]);
+			$this->set(compact('times','problem'));
+		}else{
+			return $this->redirect(array('controller' => 'AnswerResults','action' => 'index'));
+		}
+
+	}
+
+
 }

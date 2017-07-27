@@ -93,4 +93,17 @@ class SecondMadeProblem extends AppModel {
 			),
 		),
 	);
+
+	public function toProblemFormat($problem){
+		$convert['SecondMadeProblem']['id'] = $problem['SecondMadeProblem']['id'];
+		$convert['SecondMadeProblem']['sentence'] = $problem['SecondMadeProblem']['sentence'];
+		$convert['SecondMadeProblem']['option'][1] = $problem['SecondMadeProblem']['option_1'];
+		$convert['SecondMadeProblem']['option'][2] = $problem['SecondMadeProblem']['option_2'];
+		$convert['SecondMadeProblem']['option'][3] = $problem['SecondMadeProblem']['option_3'];
+		$convert['SecondMadeProblem']['option'][4] = $problem['SecondMadeProblem']['option_4'];
+
+		return $convert;
+	}
+
+
 }
