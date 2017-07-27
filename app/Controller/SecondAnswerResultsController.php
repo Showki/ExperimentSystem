@@ -58,7 +58,7 @@ class SecondAnswerResultsController extends AppController {
 				'id' => $second_answer_result_id,
 			)));
 			$select_number = $this->request->data['SecondAnswerResult']['select_number'];
-			$correct_number = $answer_result_tmp['SecondAnswerResults']['correct_number'];
+			$correct_number = $second_answer_result_tmp['SecondMadeProblem']['correct_number'];
 
 			if($select_number == $correct_number){
 				$this->request->data['SecondAnswerResult']['result'] = 1;
@@ -143,13 +143,13 @@ class SecondAnswerResultsController extends AppController {
 	public function sum_second_points(){
 		$this->autoRender = false;
 		$id = $this->Auth->user('id');
-		$points = $this->AnswerResult->find('count',array(
+		$second_points = $this->SecondAnswerResult->find('count',array(
 			'conditions' => array(
 				'users_id' => $id,
 				'result' => 1
 			)));
 		$this->loadModel('User');
-		if($this->User->save(compact('id','points'))){
+		if($this->User->save(compact('id','second_points'))){
 			$this->Session->setFlash(__(
 				'採点が完了しました．指示が出るまでお待ち下さい．'), 'alert', array(
 					'plugin' => 'BoostCake',

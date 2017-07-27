@@ -123,7 +123,8 @@ class SecondMadeProblemsController extends AppController {
 			// ユーザテーブルに何問目まで進んでいるのか記録する
 			$this->loadModel('User');
 			$id = $this->Auth->user('id');
-			$tmp['User'] = compact('id','times');
+			$second_times = $times;
+			$tmp['User'] = compact('id','second_times');
 			$this->User->save($tmp);
 			
 		}
