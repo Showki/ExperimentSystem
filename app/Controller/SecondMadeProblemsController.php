@@ -127,12 +127,27 @@ class SecondMadeProblemsController extends AppController {
 			$this->User->save($tmp);
 			
 		}
-		$problems = $this->SecondMadeProblem->find('all');
+
+		$this->loadModel('User');
+		$team = $this->User->find('first',array(
+			'conditions' => array('id' => $this->Auth->user('id')),
+			'fields' => array('team')
+		));
+		$team = $team['User']['team'];
+		if($team === 'A'){
+			$make_team = 'B';
+		}else if($team === 'B'){
+			$make_team = 'A';
+		}
+
+		$problems = $this->SecondMadeProblem->find('all',array(
+			'conditions' => array('make_team' => $make_team)));
+
 		if(!($times >= count($problems))){
 			$problem = $this->SecondMadeProblem->toProblemFormat($problems[$times]);
 			$this->set(compact('times','problem'));
 		}else{
-			return $this->redirect(array('controller' => 'AnswerResults','action' => 'index'));
+			return $this->redirect(array('controller' => 'SecondAnswerResults','action' => 'index'));
 		}
 
 	}
