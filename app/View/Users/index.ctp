@@ -8,6 +8,8 @@
 			<th>氏名</th>
 			<th>解答数</th>
 			<th>点数</th>
+			<th>②解答数</th>
+			<th>②点数</th>
 			<th>チーム</th>
 			<th>テーマ</th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
@@ -21,6 +23,8 @@
 		<td><?php echo h($user['User']['name']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['times']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['points']); ?>&nbsp;</td>
+		<td><?php echo h($user['User']['second_times']); ?>&nbsp;</td>
+		<td><?php echo h($user['User']['second_points']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['team']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['theme_1']."，".$user['User']['theme_2']."，".$user['User']['theme_3']); ?>&nbsp;</td>
 		<td class="actions">

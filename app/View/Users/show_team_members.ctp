@@ -13,6 +13,8 @@
         <th>学籍番号</th>
         <th>名前</th>
         <th>得点</th>
+		<th>②解答数</th>
+		<th>②点数</th>
         <th>テーマ①</th>
         <th>テーマ②</th>
         <th>テーマ③</th>
@@ -24,6 +26,8 @@
 		<td><?php echo h($a_member['User']['student_number']); ?>&nbsp;</td>
 		<td><?php echo h($a_member['User']['name']); ?>&nbsp;</td>
 		<td><?php echo h($a_member['User']['points']); ?>&nbsp;</td>
+		<td><?php echo h($a_member['User']['second_times']); ?>&nbsp;</td>
+		<td><?php echo h($a_member['User']['second_points']); ?>&nbsp;</td>
 		<td><?php echo h($a_member['User']['theme_1']); ?>&nbsp;</td>
 		<td><?php echo h($a_member['User']['theme_2']); ?>&nbsp;</td>
 		<td><?php echo h($a_member['User']['theme_3']); ?>&nbsp;</td>
@@ -56,6 +60,8 @@
         <th>学籍番号</th>
         <th>名前</th>
         <th>得点</th>
+		<th>②解答数</th>
+		<th>②点数</th>
         <th>テーマ①</th>
         <th>テーマ②</th>
         <th>テーマ③</th>
@@ -67,6 +73,8 @@
 		<td><?php echo h($b_member['User']['student_number']); ?>&nbsp;</td>
 		<td><?php echo h($b_member['User']['name']); ?>&nbsp;</td>
 		<td><?php echo h($b_member['User']['points']); ?>&nbsp;</td>
+		<td><?php echo h($b_member['User']['second_times']); ?>&nbsp;</td>
+		<td><?php echo h($b_member['User']['second_points']); ?>&nbsp;</td>
 		<td><?php echo h($b_member['User']['theme_1']); ?>&nbsp;</td>
 		<td><?php echo h($b_member['User']['theme_2']); ?>&nbsp;</td>
 		<td><?php echo h($b_member['User']['theme_3']); ?>&nbsp;</td>
