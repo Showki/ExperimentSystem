@@ -11,37 +11,38 @@
 <div class="top_btn_box">
 <?php 
     echo $this->Html->link('①過去問題解答',array(
-        'controller' => 'past_problems','action' => 'answer'),array(
+        'action' => '',),array(
             'class' => 'btn btn-default btn-lg top_btn',
+            'disabled' => 'disabled'
         ));
 ?>
 <?php 
     echo $this->Html->link('②問題作成',array(
-        'controller' => 'makes','action' => 'showMadeQuestions',),array(
+        'action' => '',),array(
             'class' => 'btn btn-default btn-lg top_btn',
+            'disabled' => 'disabled'
         )); 
 ?>
 <?php 
-    echo $this->Html->link(
-        '③アンケート','https://docs.google.com/forms/d/e/1FAIpQLSeE_8HXXSa_ShKszAvLLj6aQgXcnFNget1oTKD8FbnsJZzJCg/viewform',array(
+    echo $this->Html->link('③アンケート',array(
+        'action' => '',),array(
             'class' => 'btn btn-default btn-lg top_btn',
-            'target' => '_blank' 
-        ));
+            'disabled' => 'disabled'
+        )); 
 ?>
 <br/>
 <?php 
-    echo $this->Html->link('④作成問題解答',array(
-        'action' => '',),array(
+    echo $this->Html->link('④過去問題解答',array(
+        'controller' => 'second_made_problems','action' => 'answer'),array(
             'class' => 'btn btn-default btn-lg top_btn',
-            'disabled' => 'disabled'
-        )); 
+        ));
 ?>
 <?php 
-    echo $this->Html->link('⑤アンケート',array(
-        'action' => '',),array(
+    echo $this->Html->link(
+        '⑤アンケート','https://docs.google.com/forms/d/e/1FAIpQLSdM3pljAK1SE7PRIzmJkBMl6DdN35TIiSCp61UmGRHJe2xT8Q/viewform?fbzx=895800738726232800',array(
             'class' => 'btn btn-default btn-lg top_btn',
-            'disabled' => 'disabled'
-        )); 
+            'target' => '_blank' 
+        ));
 ?>
 </div>
 

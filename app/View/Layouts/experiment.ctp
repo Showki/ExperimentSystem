@@ -46,11 +46,9 @@
 			<ul class="nav navbar-nav">
             <li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
 			<li><?php echo $this->Html->link('HOME',array('controller' => 'users','action' => 'top'));?></li>
-			<li><?php echo $this->Html->link('問題解答',array('controller' => 'past_problems','action' => 'answer'));?></li>
-			<li><?php echo $this->Html->link('問題作成/履歴',array('controller' => 'makes','action' => 'showMadeQuestions'));?></li>
-			<li><?php echo $this->Html->link('過去問題',array('controller' => 'past_problems','action' => 'index'),array('target' => '_blank' ));?></li>
+			<li><?php echo $this->Html->link('問題解答',array('controller' => 'second_made_problems','action' => 'answer'));?></li>
 			<li><?php echo $this->Html->link(
-				'アンケート','https://docs.google.com/forms/d/e/1FAIpQLSeE_8HXXSa_ShKszAvLLj6aQgXcnFNget1oTKD8FbnsJZzJCg/viewform',array(
+				'アンケート','https://docs.google.com/forms/d/e/1FAIpQLSdM3pljAK1SE7PRIzmJkBMl6DdN35TIiSCp61UmGRHJe2xT8Q/viewform?fbzx=895800738726232800',array(
 					'target' => '_blank' ));?>
 			</li>
             <li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</li>
